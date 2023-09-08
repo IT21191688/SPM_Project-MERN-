@@ -40,7 +40,7 @@ function CreatePost() {
       setContent('');
 
       alert('Post created successfully');
-      navigate(`/`);
+      navigate(`/allpost`);
 
 
 

@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 
 function SelectedPost(props) {
     const { postId } = useParams();
+    console.log(postId);
     //const postId = props.match.params.postId; // Get the post ID from the route params
     const [post, setPost] = useState({});
     const [comments, setComments] = useState([]);
@@ -20,8 +21,20 @@ function SelectedPost(props) {
 
 
     useEffect(() => {
+
+
+
+
+
+
+
+
+
+
+
+        
         // Fetch the selected post's details
-        axios.get(`http://localhost:8070/api/posts/posts/${postId}`)
+        axios.get(`http://localhost:8080/api/posts/posts/${postId}`)
             .then((response) => {
                 setPost(response.data);
             })
@@ -30,7 +43,7 @@ function SelectedPost(props) {
             });
 
         // Fetch comments related to the selected post
-        axios.get(`http://localhost:8070/api/comments/posts/${postId}/comments`)
+        axios.get(`http://localhost:8080/api/comments/posts/${postId}/comments`)
             .then((response) => {
                 setComments(response.data);
             })
@@ -45,7 +58,7 @@ function SelectedPost(props) {
 
     const handleSubmitComment = () => {
         // Send a POST request to add a new comment
-        axios.post(`http://localhost:8070/api/comments/posts/${postId}/comments`, {
+        axios.post(`http://localhost:8080/api/comments/posts/${postId}/comments`, {
             postId,
             text: newComment,
         })
@@ -62,7 +75,7 @@ function SelectedPost(props) {
 
     const handleDeleteComment = (commentId) => {
         // Send a DELETE request to delete the comment
-        axios.delete(`http://localhost:8070/api/comments/comments/${commentId}`)
+        axios.delete(`http://localhost:8080/api/comments/comments/${commentId}`)
             .then(() => {
                 // Remove the deleted comment from the comments state
                 const updatedComments = comments.filter((comment) => comment._id !== commentId);
@@ -80,7 +93,7 @@ function SelectedPost(props) {
 
     const handleUpdateComment = (commentId) => {
         // Send a PUT or PATCH request to update the comment
-        axios.put(`http://localhost:8070/api/comments/comments/${commentId}`, {
+        axios.put(`http://localhost:8080/api/comments/comments/${commentId}`, {
             text: editComment.text,
         })
             .then(() => {
