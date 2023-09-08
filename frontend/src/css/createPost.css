@@ -1,0 +1,57 @@
+/* createPost.css */
+.container.create-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2.create-post-title {
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #27005D;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    color: #27005D;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  /* Style for the text content */
+  .form-control.text-content {
+    height: 200px; /* Adjust the height as needed */
+  }
+  
+  /* Style for the code content */
+  .form-control.code-content {
+    font-family: 'Courier New', monospace;
+    background-color: #f2f2f2; /* Background color for code blocks */
+    padding: 10px;
+    white-space: pre-wrap; /* Preserve line breaks */
+  }
+  
+  .btn.create-post-btn {
+    background-color: #9400FF;
+    color: #E4F1FF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .btn.create-post-btn:hover {
+    background-color: #AED2FF;
+  }
+  

@@ -1,0 +1,138 @@
+
+.codeeditorwrapper {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #f7f7f7;
+}
+
+.filename {
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: 400;
+    color: #343434;
+    background: #f7f7f7;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    cursor: default;
+    position: relative;
+}
+
+.filename span {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.filename span i {
+    font-size: 26px;
+    color: #7cb342;
+}
+
+.loading span i {
+    font-size: 16px;
+    left: 18px;
+    top: 2px;
+}
+
+#code-editor .CodeMirror {
+    font-size: 14px;
+    line-height: 21px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    height: 400px;
+}
+
+/* Styles for the output area */
+.output {
+    height: 85px;
+    margin-top: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    overflow: auto;
+}
+
+.output div {
+    position: relative;
+}
+
+.output div i {
+    position: absolute;
+    font-weight: bolder;
+    font-size: 21px;
+    color: royalblue;
+}
+
+.output pre {
+    margin: 0;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.loading div i {
+    font-size: 16px;
+    left: 18px;
+    top: 2px;
+}
+
+@media only screen and (max-width: 900px) {
+    .codeeditorwrapper #code-editor .CodeMirror {
+        height: 300px;
+    }
+}
+
+
+
+
+/* voice guide css*/
+
+/* VoiceCommandGuide.module.css */
+
+.voice-guide-container {
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.voice-guide-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.voice-guide-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.voice-guide-list {
+    font-size: 14px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.voice-guide-subheading {
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.voice-guide-page {
+    display: none;
+}
+
+.active {
+    display: block;
+}

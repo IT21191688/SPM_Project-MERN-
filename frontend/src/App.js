@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 import Register from './components/Register';
 import Login from './components/Login'
 import FogotPassword from './components/FogotPassword'
@@ -15,6 +16,11 @@ import ChangePass from './components/ChangePass';
 import Profile from './components/Profile';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer';
+import Editor from './components/Editor'
+import AllPost from './components/AllPost';
+import CreatePost from './components/CreatePost';
+import SelectedPost from './components/SelectedPost';
+import UpdatePost from './components/UpdatePost';
 
 import Cookies from 'js-cookie';
 
@@ -71,8 +77,13 @@ function App() {
 
                 {/*<Route exact path='/userHome/:token/:role' element={<UserHome />} />*/}
                 <Route path='/userHome' element={<UserHome />} />
+                <Route path='/editor' element={<Editor />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/resetPassword' element={<ResetPassword />} />
+                <Route path="/allpost" element={<AllPost />} />
+                <Route path="/post/:postId" element={<SelectedPost />} />
+                <Route path="/editpost/:postId" element={<UpdatePost />} />
+                <Route path="/createpost" element={<CreatePost />} />
 
               </Routes>
 
