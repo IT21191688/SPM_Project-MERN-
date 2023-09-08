@@ -97,17 +97,18 @@ export default function Login() {
     return (
 
         <div className='flex justify-center items-center min-h-screen bg-gray-100'>
-            <div className='bg-white p-6 rounded-lg shadow-lg'>
-                <h1 className='text-2xl font-bold text-center text-primary mb-6'>Login</h1>
+            <div className='bg-white p-6 rounded-lg shadow-lg w-96'>
+                <h1 className='text-3xl font-bold text-center text-primary mb-6'>Login</h1>
 
-                <form className='space-y-4' method="post" encType="multipart/form-data">
+                <form className='space-y-4' onSubmit={handleSubmit}>
                     <div className='mb-4'>
                         <label className='block text-gray-700'>Email</label>
                         <input
                             type="email"
                             className='border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-primary'
                             placeholder="Enter your email"
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
 
@@ -117,15 +118,15 @@ export default function Login() {
                             type="password"
                             className='border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring focus:border-primary'
                             placeholder="Enter your password"
-                            onChange={e => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
 
                     <div className='flex justify-between items-center'>
                         <button
                             type="submit"
-                            className='bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 text-white rounded-md py-2 px-4 w-1/2'
-                            onClick={handleSubmit}
+                            className='bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-300 text-white rounded-md py-2 px-4 w-1/2'
                         >
                             Login
                         </button>

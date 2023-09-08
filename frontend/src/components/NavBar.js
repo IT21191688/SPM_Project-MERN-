@@ -24,94 +24,120 @@ export default function NavBarUser() {
     return (
 
         <>
-
-
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-                <a class="navbar-brand" href="#">CODE MAGE</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-                        </li>
-
-                        {
-                            role === 'admin' ?
-                                <>
-                                    <li class="nav-item pl-1">
-                                        <a class="nav-link" href="/adminHome"><i class="fa fa-th-list fa-fw mr-1"></i>Dashboard</a>
-                                    </li>
-                                    <li class="nav-item pl-1">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Account
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <a class="dropdown-item" href={'/profile'}>Profile</a>
-                                                <a class="dropdown-item" href={'/resetPassword'}>Change Password</a>
-                                                <button type="button" class="dropdown-item" onClick={() => logOut()}>LogOut</button>
-
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </> : null
-                        }
-
-                        {role === 'user' ?
-                            <>
-                                <li class="nav-item pl-1">
-                                    <a class="nav-link" href="/userHome"><i class="fa fa-th-list fa-fw mr-1"></i>Home</a>
+            <nav className="bg-purple-900">
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between py-4">
+                        <a className="text-white text-2xl font-bold" href="#">
+                            CODE MAGE
+                        </a>
+                        <button
+                            className="text-white text-xl md:hidden"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span className="navbar-toggler-icon">&#9776;</span>
+                        </button>
+                        <div className="md:flex md:items-center md:justify-end hidden" id="navbarNav">
+                            <ul className="flex space-x-2 text-white">
+                                <li className="nav-item">
+                                    <a className="nav-link" href="#">
+                                        Home
+                                    </a>
                                 </li>
-                                <li class="nav-item pl-1">
-                                    <a class="nav-link" href="/editor"><i class="fa fa-th-list fa-fw mr-1"></i>Code Editor</a>
-                                </li>
-                                <li class="nav-item pl-1">
-                                    <a class="nav-link" href="/allpost"><i class="fa fa-th-list fa-fw mr-1"></i>Review Code</a>
-                                </li>
-                                <li class="nav-item pl-1 pr-20">
-                                    <div class="dropdown">
-                                        <a class="btn btn-secondary row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa-regular fa-user col" />
-                                            <span className="col"></span>
-
-
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <a class="dropdown-item" href={'/profile'}>Profile</a>
-                                            <a class="dropdown-item" href={'/resetPassword'}>Change Password</a>
-                                            <button type="button" class="dropdown-item" onClick={() => logOut()}>LogOut</button>
-
-                                        </ul>
-                                    </div>
-                                </li> </> : null}
-
-                        {!role ?
-
-                            <>
-
-                                <li class="nav-item pl-1">
-                                    <a class="nav-link bg-orange-600 rounded text-black" href="/login"><i class="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Login</a>
-                                </li>
-                                <li class="nav-item pl-1">
-                                    <a class="nav-link bg-teal-400 rounded text-black" href="/register"><i class="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Register</a>
-                                </li>
-
-                            </>
-
-                            : null
-
-                        }
-
-
-
-
-
-                    </ul>
+                                {role === 'admin' ? (
+                                    <>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/adminHome">
+                                                <i className="fa fa-th-list fa-fw mr-1"></i>Dashboard
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <div className="dropdown">
+                                                <button
+                                                    className="btn btn-secondary dropdown-toggle"
+                                                    type="button"
+                                                    id="dropdownMenuButton1"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                >
+                                                    Account
+                                                </button>
+                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <a className="dropdown-item" href={'/profile'}>
+                                                        Profile
+                                                    </a>
+                                                    <a className="dropdown-item" href={'/resetPassword'}>
+                                                        Change Password
+                                                    </a>
+                                                    <button className="dropdown-item" onClick={() => logOut()}>
+                                                        LogOut
+                                                    </button>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </>
+                                ) : null}
+                                {role === 'user' ? (
+                                    <>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/userHome">
+                                                <i className="fa fa-th-list fa-fw mr-1"></i>Home
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/editor">
+                                                <i className="fa fa-th-list fa-fw mr-1"></i>Code Editor
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link" href="/allpost">
+                                                <i className="fa fa-th-list fa-fw mr-1"></i>Review Code
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <div className="dropdown">
+                                                <a className="btn btn-secondary row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i className="fa-regular fa-user col" />
+                                                    <span className="col"></span>
+                                                </a>
+                                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                    <a className="dropdown-item" href={'/profile'}>
+                                                        Profile
+                                                    </a>
+                                                    <a className="dropdown-item" href={'/resetPassword'}>
+                                                        Change Password
+                                                    </a>
+                                                    <button className="dropdown-item" onClick={() => logOut()}>
+                                                        LogOut
+                                                    </button>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </>
+                                ) : null}
+                                {!role ? (
+                                    <>
+                                        <li className="nav-item">
+                                            <a className="nav-link bg-orange-600 rounded text-black" href="/login">
+                                                <i className="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Login
+                                            </a>
+                                        </li>
+                                        <li className="nav-item">
+                                            <a className="nav-link bg-teal-400 rounded text-black" href="/register">
+                                                <i className="fa fa-phone fa-fw fa-rotate-180 mr-1"></i>Register
+                                            </a>
+                                        </li>
+                                    </>
+                                ) : null}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </nav>
-
         </>
     )
 
