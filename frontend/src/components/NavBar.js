@@ -27,7 +27,7 @@ export default function NavBarUser() {
 
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">CODE MAGE</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -72,9 +72,12 @@ export default function NavBarUser() {
                                 </li>
                                 <li class="nav-item pl-1 pr-20">
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Account
-                                        </button>
+                                        <a class="btn btn-secondary row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa-regular fa-user col" />
+                                            <span className="col"></span>
+
+
+                                        </a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <a class="dropdown-item" href={'/profile'}>Profile</a>
                                             <a class="dropdown-item" href={'/resetPassword'}>Change Password</a>
