@@ -146,7 +146,7 @@ export default function Login() {
 
                     <div className='text-center'>
                         <span className='text-gray-600'>
-                            Forgot Password? <Link to='/forgotPassword' className='text-blue-500 hover:underline'>Reset</Link>
+                            Forgot Password? <Link to='/fogotPassword' className='text-blue-500 hover:underline'>Reset</Link>
                         </span>
                     </div>
                 </form>
