@@ -44,9 +44,9 @@ export default function Register() {
     return (
 
         <div className="min-h-screen flex justify-center items-center bg-gray-100">
-            <div className="bg-white p-5 rounded shadow-lg max-w-md w-full">
+            <div className="bg-white p-6 rounded shadow-lg max-w-md w-full">
                 <h1 className="text-3xl font-semibold text-center mb-6">Register</h1>
-                <form className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
@@ -55,7 +55,7 @@ export default function Register() {
                             <input
                                 type="text"
                                 id="firstName"
-                                className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                                className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                                 placeholder="First Name"
                                 onChange={(e) => setFirstName(e.target.value)}
                                 required
@@ -68,7 +68,7 @@ export default function Register() {
                             <input
                                 type="text"
                                 id="lastName"
-                                className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                                className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                                 placeholder="Last Name"
                                 onChange={(e) => setLastName(e.target.value)}
                                 required
@@ -82,7 +82,7 @@ export default function Register() {
                         <input
                             type="email"
                             id="email"
-                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             placeholder="Email"
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -95,7 +95,7 @@ export default function Register() {
                         <input
                             type="number"
                             id="age"
-                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             placeholder="Age"
                             onChange={(e) => setAge(e.target.value)}
                             required
@@ -108,7 +108,7 @@ export default function Register() {
                         <input
                             type="date"
                             id="dob"
-                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             onChange={(e) => setDob(e.target.value)}
                             required
                         />
@@ -120,7 +120,7 @@ export default function Register() {
                         <input
                             type="password"
                             id="password"
-                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                             required
@@ -129,8 +129,7 @@ export default function Register() {
                     <div>
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 text-white rounded-md py-2 px-2 focus:ring focus:ring-opacity-50 focus:ring-blue-400 hover:bg-blue-600"
-                            onClick={handleSubmit}
+                            className="w-full bg-blue-500 text-white rounded-md py-2 px-3 focus:ring focus:ring-opacity-50 focus:ring-blue-400 hover:bg-blue-600"
                         >
                             Submit
                         </button>

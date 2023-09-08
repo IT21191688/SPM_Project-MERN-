@@ -76,51 +76,51 @@ export default function FogotPassword() {
 
     return (
 
-        <div className='container flex justify-center items-center min-h-screen'>
-            <div className='pb-10'>
-                <form className='mt-20 border rounded-lg shadow-xl p-5 w-96'>
-                    <h1 className='text-primary text-2xl font-bold mb-6 text-center'>Change Password</h1>
+        <div className="container flex justify-center items-center min-h-screen">
+            <div className="pb-10">
+                <form className="mt-20 border rounded-lg shadow-xl p-5 w-96">
+                    <h1 className="text-primary text-2xl font-bold mb-6 text-center">Change Password</h1>
 
-                    <div className='mb-4'>
-                        <label htmlFor='userName' className='block text-sm font-medium text-gray-700'>
+                    <div className="mb-4">
+                        <label htmlFor="userName" className="block text-sm font-medium text-gray-700">
                             User Name
                         </label>
                         <input
-                            type='email'
-                            id='userName'
-                            className='form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800'
-                            placeholder='Enter Your Email'
-                            onChange={e => setUserName(e.target.value)}
+                            type="email"
+                            id="userName"
+                            className="form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800"
+                            placeholder="Enter Your Email"
+                            onChange={(e) => setUserName(e.target.value)}
                         />
                     </div>
 
-                    <div className='mb-6'>
+                    <div className="mb-6">
                         <button
-                            type='button'
-                            className='btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-green-300 dark:focus:ring-green-800'
+                            type="button"
+                            className="btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
                             onClick={sendVerificationCode}
                         >
-                            Send
+                            Send Verification Code
                         </button>
                     </div>
 
-                    <div className='mb-4'>
-                        <label htmlFor='verificationCode' className='block text-sm font-medium text-gray-700'>
+                    <div className="mb-4">
+                        <label htmlFor="verificationCode" className="block text-sm font-medium text-gray-700">
                             Verification Code
                         </label>
                         <input
-                            type='text'
-                            id='verificationCode'
-                            className='form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800'
-                            placeholder='Enter Verification Code'
-                            onChange={e => setEnteredvalue(e.target.value)}
+                            type="text"
+                            id="verificationCode"
+                            className="form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800"
+                            placeholder="Enter Verification Code"
+                            onChange={(e) => setVerificationCode(e.target.value)}
                         />
                     </div>
 
-                    <div className='mb-6'>
+                    <div className="mb-6">
                         <button
-                            type='button'
-                            className='btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-green-300 dark:focus:ring-green-800'
+                            type="button"
+                            className="btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
                             onClick={keySubmit}
                         >
                             Submit
@@ -128,8 +128,8 @@ export default function FogotPassword() {
                     </div>
 
                     <button
-                        type='button'
-                        className='btn-secondary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-red-300 dark:focus:ring-red-800'
+                        type="button"
+                        className="btn-secondary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-red-300 dark:focus:ring-red-800"
                         onClick={cancel}
                     >
                         Cancel
@@ -137,7 +137,6 @@ export default function FogotPassword() {
                 </form>
             </div>
         </div>
-
     )
 
 

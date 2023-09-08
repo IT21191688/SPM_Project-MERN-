@@ -52,46 +52,42 @@ export default function ChangePass() {
 
 
     return (
-
-        <div className='container flex justify-center' style={{ height: "90vh" }} >
-
-            <div className='pb-10'>
-
-                <form className='mt-10 border-solid border-inherit border-2 rounded-sm p-5 shadow-xl w-80' method="post" encType="multipart/form-data" >
-                    <h1 className='text-primary text-2xl font-bold'>Change Password</h1><br></br>
-
-
+        <div className='container flex justify-center' style={{ height: "90vh" }}>
+            <div className='pb-5'>
+                <form className='mt-5 border-solid border-inherit border-2 rounded-sm p-5 shadow-xl w-100' method="post" encType="multipart/form-data">
+                    <h1 className='text-primary text-2xl font-bold'>Change Password</h1>
+                    <br />
                     <div className='row'>
-                        <div class="form-group col-md-12">
-                            <label >User Name</label>
-                            <input type="email" class="form-control" placeholder="Enter password" value={email} disabled />
+                        <div className="form-group col-md-12">
+                            <label>User Name</label>
+                            <input type="email" className="form-control" placeholder="Enter email" value={email} disabled />
                         </div>
-
-                    </div><br></br>
+                    </div>
+                    <br />
                     <div className='row'>
-                        <div class="form-group col-md-12">
-                            <label >New Password</label>
-                            <input type="password" class="form-control" placeholder="Enter password" onChange={e => setNewPassword(e.target.value)} />
+                        <div className="form-group col-md-12">
+                            <label>New Password</label>
+                            <input type="password" className="form-control" placeholder="Enter new password" onChange={e => setNewPassword(e.target.value)} />
                         </div>
-
-                    </div><br></br>
+                    </div>
+                    <br />
                     <div className='row'>
-
-                        <div class="form-group col-md-12">
-                            <label >Comfirm Password</label>
-                            <input type="password" class="form-control" placeholder="comfirm password" onChange={e => setPassword(e.target.value)} />
+                        <div className="form-group col-md-12">
+                            <label>Confirm Password</label>
+                            <input type="password" className="form-control" placeholder="Confirm new password" onChange={e => setPassword(e.target.value)} />
                         </div>
-                    </div><br></br>
-
-
-                    <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-48" onClick={resetSubmit}>Submit</button><br></br><br></br>
-                    <button type="submit" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-48" onClick={cancel}>Cancel</button><br></br>
-
+                    </div>
+                    <br />
+                    <button type="submit" className="btn btn-success btn-block font-medium rounded-lg text-sm text-white px-5 py-2.5" onClick={resetSubmit}>
+                        Submit
+                    </button>
+                    <br />
+                    <button type="submit" className="btn btn-danger btn-block font-medium rounded-lg text-sm text-white px-5 py-2.5" onClick={cancel}>
+                        Cancel
+                    </button>
+                    <br />
                 </form>
-
-
             </div>
-
         </div>
     )
 
