@@ -43,52 +43,110 @@ export default function Register() {
 
     return (
 
-        <div className='container flex justify-center' style={{ height: "90vh" }} >
-
-            <div className='pb-10'>
-
-                <form className='mt-20 border-solid border-inherit border-2 rounded-sm p-5 shadow-xl' method="post" encType="multipart/form-data" >
-                    <h1 className='text-primary text-2xl font-bold'>Register Form</h1>
-
-                    <div className='row'>
-                        <div class="form-group col-md-6">
-                            <label>First Name</label>
-                            <input type="text" class="form-control" placeholder="First Name" onChange={e => setFirstName(e.target.value)} required />
+        <div className="min-h-screen flex justify-center items-center bg-gray-100">
+            <div className="bg-white p-5 rounded shadow-lg max-w-md w-full">
+                <h1 className="text-3xl font-semibold text-center mb-6">Register</h1>
+                <form className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                                First Name
+                            </label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                                placeholder="First Name"
+                                onChange={(e) => setFirstName(e.target.value)}
+                                required
+                            />
                         </div>
-                        <div class="form-group col-md-6">
-                            <label>Last Name</label>
-                            <input type="text" class="form-control" placeholder="Last Name" onChange={e => setLastName(e.target.value)} required />
+                        <div>
+                            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                                Last Name
+                            </label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                                placeholder="Last Name"
+                                onChange={(e) => setLastName(e.target.value)}
+                                required
+                            />
                         </div>
-                    </div><br></br>
-                    <div className='row'>
-                        <div class="form-group col-md-6">
-                            <label >Email</label>
-                            <input type="email" class="form-control" placeholder="Enter email" onChange={e => setEmail(e.target.value)} required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >Age</label>
-                            <input type="number" class="form-control" placeholder="Age" onChange={e => setAge(e.target.value)} required />
-                        </div>
-                    </div><br></br>
-                    <div className='row'>
-                        <div class="form-group col-md-6">
-                            <label >Date Of Birth</label>
-                            <input type="date" class="form-control" onChange={e => setDob(e.target.value)} required />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label >Password</label>
-                            <input type="password" class="form-control" placeholder="password" onChange={e => setPassword(e.target.value)} />
-                        </div>
-                    </div><br></br>
-
-
-                    <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-48" onClick={handleSubmit}>Submit</button><br></br><br></br>
-                    <Link to={'/login'}><button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 w-48" >Cancel</button></Link>
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                            Email
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            placeholder="Email"
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="age" className="block text-sm font-medium text-gray-700">
+                            Age
+                        </label>
+                        <input
+                            type="number"
+                            id="age"
+                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            placeholder="Age"
+                            onChange={(e) => setAge(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="dob" className="block text-sm font-medium text-gray-700">
+                            Date of Birth
+                        </label>
+                        <input
+                            type="date"
+                            id="dob"
+                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            onChange={(e) => setDob(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            className="mt-1 block w-full py-2 px-2 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-500 text-white rounded-md py-2 px-2 focus:ring focus:ring-opacity-50 focus:ring-blue-400 hover:bg-blue-600"
+                            onClick={handleSubmit}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                    <div className="text-center">
+                        <span>Already have an account?</span>
+                        <Link to="/login" className="text-blue-500 hover:underline">
+                            Login
+                        </Link>
+                    </div>
                 </form>
-
             </div>
-
         </div>
+
+
+
     )
 
 
