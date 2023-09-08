@@ -9,9 +9,13 @@ const googleAuth = require('./google.auth');
 const passport = require('passport');
 var session = require('express-session');
 const authRoutes = require('./routes/userRoutes');
+const courseRouter = require('./routes/courses');
+const tutorialRouter = require('./routes/tutorials');
 const { routsInit } = require('./controllers/auth.google')
 const MongoStore = require('connect-mongo');
 const { config } = require("dotenv");
+const postRoutes = require('./routes/postRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 //import .env
 require("dotenv").config();
@@ -63,6 +67,12 @@ mongoose.connect(URI, {
 const db = mongoose.connection;
 
 app.use('/auth', authRoutes);
+
+app.use('/courses', courseRouter);
+app.use('/tutorials', tutorialRouter);
+
+app.use('/api/posts', postRoutes);
+app.use('/api/comments', commentRoutes);
 
 
 

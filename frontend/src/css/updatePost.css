@@ -1,0 +1,46 @@
+/* updatePost.css */
+.container.update-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2.update-post-title {
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #27005D;
+  }
+  
+  form.update-form {
+    margin-top: 20px;
+  }
+  
+  label.update-label {
+    font-size: 18px;
+    color: #27005D;
+  }
+  
+  input.update-input,
+  textarea.update-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  button.update-button {
+    background-color: #9400FF;
+    color: #E4F1FF;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  button.update-button:hover {
+    background-color: #AED2FF;
+  }
+  

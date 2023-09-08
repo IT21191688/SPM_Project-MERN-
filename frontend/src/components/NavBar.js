@@ -64,6 +64,12 @@ export default function NavBarUser() {
                                 <li class="nav-item pl-1">
                                     <a class="nav-link" href="/userHome"><i class="fa fa-th-list fa-fw mr-1"></i>Home</a>
                                 </li>
+                                <li class="nav-item pl-1">
+                                    <a class="nav-link" href="/editor"><i class="fa fa-th-list fa-fw mr-1"></i>Code Editor</a>
+                                </li>
+                                <li class="nav-item pl-1">
+                                    <a class="nav-link" href="/allpost"><i class="fa fa-th-list fa-fw mr-1"></i>Review Code</a>
+                                </li>
                                 <li class="nav-item pl-1 pr-20">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
