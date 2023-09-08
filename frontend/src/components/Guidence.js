@@ -21,7 +21,7 @@ export default function Guidence() {
         }
     };
     return (
-        
+
 
         <div className={`container col-md-3 ${Style['voice-guide-container']}`} style={{ textAlign: 'left', height: '600px' }}>
             <h2 className={`mb-4 ${Style['voice-guide-heading']}`}>Voice Command Guide</h2>
@@ -90,8 +90,8 @@ export default function Guidence() {
                 {/* ... Other content for Page 3 */}
             </div>
             <div className="text-center">
-                <button className="btn btn-primary me-2 w-10" onClick={prevPage}>Previous</button>
-                <button className="btn btn-primary w-10" onClick={nextPage}>Next</button>
+                <button className="btn btn-primary me-1 w-20" onClick={prevPage}>Previous</button>
+                <button className="btn btn-primary w-20" onClick={nextPage}>Next</button>
             </div>
 
         </div>

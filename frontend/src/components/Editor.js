@@ -322,56 +322,46 @@ function Editor(props) {
                     </div>
                 </div>
 
-                <div className='col-md-3' style={{ paddingRight: '5px' }}>
-                    <div className='dropdown mb-3'>
-                        <button className='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'>
-                            Select Language: {language}
-                        </button>
-                        <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                            <li><a className='dropdown-item' href='#' onClick={() => setlanguage('Javascript')}>Javascript</a></li>
-                            <li><a className='dropdown-item' href='#' onClick={() => setlanguage('Java')}>Java</a></li>
-                        </ul>
-                    </div>
-                    <h2 className='mb-3'>Say Your Code</h2>
-
-                    <div
-                        className='main-content mb-3 p-2 border'
-                        style={{ height: '50px', cursor: 'pointer' }}
-                        onClick={() => setTextToCopy(transcript)}
-                    >
-                        {transcript}
-                    </div>
-                    <hr />
-
-                    <div className='main-content mb-3 p-2 border' style={{ height: '200px' }}>
-                        {keywords}
-                    </div>
-
-                    <div className='mb-3'>
-                        <button className='btn btn-primary me-2' onClick={applyGeneratedCode}>
-                            Apply Code
-                        </button>
-                        <button className='btn btn-secondary' onClick={rejectCode}>
-                            Clear
-                        </button>
-                    </div>
-
-                    <div className='btn-style'>
-                        <button
-                            className={`btn ${isCopied ? 'btn-success' : 'btn-primary'} me-2`}
-                            onClick={setCodeEditor}
-                        >
-                            {isCopied ? 'Copied!' : 'Copy to Clipboard'}
-                        </button>
-
-                        <button
-                            className={`btn ${isListening ? 'btn-danger' : 'btn-success'}`}
-                            onClick={isListening ? stopListening : startListening}
-                        >
-                            {isListening ? 'Stop Listening' : 'Start Listening'}
-                        </button>
+                <div className="col-md-3" style={{ paddingRight: '5px' }}>
+                    <div className="bg-white rounded p-4 shadow">
+                        <div className="mb-3">
+                            <div className="dropdown">
+                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select Language: {language}
+                                </button>
+                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Javascript')}>Javascript</a></li>
+                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Java')}>Java</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <h2 className="mb-3">Say Your Code</h2>
+                        <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
+                            {transcript}
+                        </div>
+                        <hr />
+                        <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
+                            {keywords}
+                        </div>
+                        <div className="mb-3">
+                            <button className="btn btn-primary me-2" onClick={applyGeneratedCode}>
+                                Apply Code
+                            </button>
+                            <button className="btn btn-secondary" onClick={rejectCode}>
+                                Clear
+                            </button>
+                        </div>
+                        <div className="btn-style">
+                            <button className={`btn ${isCopied ? 'btn-success' : 'btn-primary'} me-2`} onClick={setCodeEditor}>
+                                {isCopied ? 'Copied!' : 'Copy Clipboard'}
+                            </button>
+                            <button className={`btn ${isListening ? 'btn-danger' : 'btn-success'}`} onClick={isListening ? stopListening : startListening}>
+                                {isListening ? 'Stop Listening' : 'Start Listening'}
+                            </button>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
