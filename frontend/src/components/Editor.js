@@ -350,83 +350,100 @@ function Editor(props) {
 
     return (
 
-        <div className='container mt-5'>
-            <div className='row'>
-                <div className='col-md-4'>
-                    <Guidence />
-                </div>
+  
 
-                <div className='col-md-5' style={{ padding: '5px' }}>
-                    <div className={`${Style.codeeditorwrapper}`}>
-                        <div className={Style.filename}>
-                            My Code Editor
-                            <span
-                                onClick={() => CodeMirrorEditor.runCode()}
-                                title='Click here to run this file'
-                                className={`float-right cursor-pointer ${loading ? Style.loading : ''}`}
-                            >
-                                {loading && <i className={`fa fa-circle-o-notch fa-spin fa-3x ${Style.loadingIcon}`}></i>}
-                                {!loading && <i className={`fa fa-caret-right ${Style.caretIcon}`} />}
-                            </span>
-                        </div>
-                        <div id='code-editor' className={`${Style.CodeMirror}`} style={{ textAlign: 'left' }} onChange={setValue}></div>
-                    </div>
-                    <div className={`output ${loading ? Style.loading : ''} p-3 border rounded`}>
-                        <div className='d-flex align-items-center'>
-                            <i className={`fa fa-angle-right ${Style.angleIcon} mr-2`}></i>
+<div className="mt-5">
+    <div className="">
+        <div className="row">
+            <div className="col-md-3">
+                <Guidence />
+            </div>
+
+            <div className="col-md-6">
+                <div className="bg-gray-100 rounded-lg shadow">
+                    <div className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">
+                        My Code Editor
+                        <span
+                            onClick={() => CodeMirrorEditor.runCode()}
+                            title="Click here to run this file"
+                            className={`float-right cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+                        >
                             {loading ? (
-                                <span className={`fa-3x ${Style.loadingIcon}`}>
-                                    <i className='fa fa-circle-o-notch fa-spin'></i>
-                                </span>
+                                <i className="animate-spin fa fa-circle-o-notch fa-3x"></i>
                             ) : (
-                                <pre className='m-0'>{result === '' ? 'Empty output' : result}</pre>
+                                <i className="fa fa-caret-right"></i>
                             )}
-                        </div>
+                        </span>
+                    </div>
+                    <div id="code-editor" className="CodeMirror text-left" onChange={setValue}></div>
+                </div>
+                <div className={`output ${loading ? "loading" : ""} p-3 border rounded mt-4`}>
+                    <div className="flex items-center">
+                        <i className={`fa fa-angle-right ${loading ? "animate-spin" : ""} mr-2`}></i>
+                        {loading ? (
+                            <span className="fa-3x">
+                                <i className="fa fa-circle-o-notch fa-spin"></i>
+                            </span>
+                        ) : (
+                            <pre className="m-0">{result === "" ? "Empty output" : result}</pre>
+                        )}
                     </div>
                 </div>
+            </div>
 
-                <div className="col-md-3" style={{ paddingRight: '5px' }}>
-                    <div className="bg-white rounded p-4 shadow">
-                        <div className="mb-3">
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select Language: {language}
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Javascript')}>Javascript</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Java')}>Java</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h2 className="mb-3">Say Your Code</h2>
-                        <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
-                            {transcript}
-                        </div>
-                        <hr />
-                        <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
-                            {keywords}
-                        </div>
-                        <div className="mb-3">
-                            <button className="btn btn-primary me-2" onClick={applyGeneratedCode}>
-                                Apply Code
-                            </button>
-                            <button className="btn btn-secondary" onClick={rejectCode}>
-                                Clear
-                            </button>
-                        </div>
-                        <div className="btn-style">
-                            <button className={`btn ${isCopied ? 'btn-success' : 'btn-primary'} me-2`} onClick={setCodeEditor}>
-                                {isCopied ? 'Copied!' : 'Copy Clipboard'}
-                            </button>
-                            <button className={`btn ${isListening ? 'btn-danger' : 'btn-success'}`} onClick={isListening ? stopListening : startListening}>
-                                {isListening ? 'Stop Listening' : 'Start Listening'}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+            <div className="col-md-3">
+    <div className="bg-white p-4 rounded shadow">
+        <div className="mb-3 text-center">
+            <div className="dropdown d-inline-block">
+                <button className="btn btn-secondary dropdown-toggle bg-slate-400" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Language: {language}
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Javascript')}>Javascript</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Java')}>Java</a></li>
+                </ul>
             </div>
         </div>
+        <h2 className="mb-3">Say Your Code</h2>
+        <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
+            {transcript}
+        </div>
+        <hr />
+        <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
+            {keywords}
+        </div>
+        <div className="mb-3 text-center">
+    <div className="flex justify-center space-x-4">
+        <button className="btn flex-1" onClick={applyGeneratedCode} style={{ borderRadius: "28px", background: "#99004d", color: 'white' }}>
+            Apply Code
+        </button>
+        <button className="btn flex-1" onClick={rejectCode} style={{ borderRadius: "28px", background: "#c2c2a3", color: 'white' }}>
+            Clear
+        </button>
+    </div>
+</div>
+<div className="btn-style text-center">
+    <div className="flex justify-center space-x-4">
+        <button className={`btn flex-1  ${isCopied ? 'btn-success' : 'btn-primary'}`} onClick={setCodeEditor} style={{ borderRadius: "18px", background: "linear-gradient(45deg, #770368, #190122)#99004d", color: 'white' }}>
+            {isCopied ? 'Copied!' : 'Copy Clipboard'}
+        </button>
+        <button className={`btn flex-1   ${isListening ? 'btn-danger' : 'btn-success'}`} onClick={isListening ? stopListening : startListening} style={{ borderRadius: "18px", color: 'white' }}>
+            {isListening ? 'Stop Listening' : 'Start Listening'}
+        </button>
+    </div>
+</div>
+
+
+    </div>
+</div>
+
+    
+
+        </div>
+    </div>
+</div>
+
+
 
     );
 }
