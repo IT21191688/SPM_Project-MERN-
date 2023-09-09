@@ -92,7 +92,7 @@ function AllPost() {
                       </span>
                     </>
                   ) : (
-                    post.content
+                    <pre style={{ whiteSpace: 'pre-wrap' }}>{post.content}</pre>
                   )}
                 </p>
                 <br /><br />
