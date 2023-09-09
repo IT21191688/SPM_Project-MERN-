@@ -81,22 +81,22 @@ export default function NavBarUser() {
                                         >
                                             <ul className="bg-white text-black border border-gray-200 rounded-lg">
                                                 <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/profile'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/getCourseAdmin'}>
                                                         View Course
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/resetPassword'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/createCourse'}>
                                                         Create Course
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/resetPassword'}>
+                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/getTutorialAdmin'}>
                                                         View Tutes
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/resetPassword'}>
+                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/createTutorial'}>
                                                         Create Tutes
                                                     </button>
                                                 </li>
@@ -177,13 +177,13 @@ export default function NavBarUser() {
                                         >
                                             <ul className="bg-white text-black border border-gray-200 rounded-lg">
                                                 <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/profile'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewCourses'}>
                                                         View Course
                                                     </a>
                                                 </li>
                                               
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/resetPassword'}>
+                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
                                                         View Tutes
                                                     </button>
                                                 </li>
