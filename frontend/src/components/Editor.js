@@ -361,7 +361,7 @@ function Editor(props) {
 
                     <div className="col-md-6">
                         <div className="bg-gray-100 rounded-lg shadow">
-                            <div className="text-lg font-bold px-4 py-2 bg-blue-900 text-white">
+                            <div className="text-lg font-bold px-4 py-2 bg-blue-800 text-white">
                                 My Code Editor
                                 <span
                                     onClick={() => CodeMirrorEditor.runCode()}
@@ -377,7 +377,7 @@ function Editor(props) {
                             </div>
                             <div id="code-editor" className="CodeMirror text-left" onChange={setValue}></div>
                         </div>
-                        <div className={`output ${loading ? "loading" : ""} p-3 border rounded mt-4`}>
+                        <div className={`output ${loading ? "loading" : ""} p-3 border rounded mt-4`} style={{ maxHeight: "280px", overflowY: "auto" }}>
                             <div className="flex items-center">
                                 <i className={`fa fa-angle-right ${loading ? "animate-spin" : ""} mr-2`}></i>
                                 {loading ? (
