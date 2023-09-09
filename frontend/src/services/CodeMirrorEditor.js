@@ -212,6 +212,22 @@ class CodeMirrorEditor {
         };
     }
 
+    async formatCode() {
+        const [editor, e] = this.getEditor();
+
+        if (editor == null) throw e;
+
+        const cursor = editor.getCursor();
+        const startLine = 0;
+        const endLine = editor.lastLine();
+
+        editor.setSelection({ line: startLine, ch: 0 }, { line: endLine, ch: editor.getLine(endLine).length });
+
+        editor.execCommand('indentAuto');
+
+        editor.setCursor(cursor);
+    }
+
     async indentSelection(p1, p2) {
         const [editor, e] = this.getEditor();
 
