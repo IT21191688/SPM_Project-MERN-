@@ -30,25 +30,25 @@ function ViewCoursesAdmin() {
   };
 
   return (
-    <div className="bg-AED2FF min-h-screen p-8">
+    <div className="bg-blue-200 min-h-screen p-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-themeBlue mb-6">Courses List</h2>
+        <h2 className="text-3xl font-semibold text-blue-700 mb-6">Courses List</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
             <div key={course._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-themePurple mb-2">{course.coursename}</h3>
+                <h3 className="text-xl font-semibold text-purple-700 mb-2">{course.coursename}</h3>
                 <p className="text-gray-700">{course.description}</p>
                 <div className="mt-4">
                   <Link
                     to={`/courses/update/${course._id}`}
-                    className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition duration-300 inline-block mr-2"
                   >
                     Update
                   </Link>
                   <button
                     onClick={() => handleDeleteCourse(course._id)}
-                    className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block"
+                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block"
                   >
                     Delete
                   </button>
