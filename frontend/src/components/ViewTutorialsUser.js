@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function ViewTutorialsUser() {
+  const { courseId, courseName } = useParams();
+
   const [tutorials, setTutorials] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     // Fetch the list of tutorials from your server when the component mounts
     async function fetchTutorials() {
       try {
         const response = await axios.post('http://localhost:8080/tutorials/allT'); // Adjust the endpoint based on your API route
-        setTutorials(response.data);
+        
+        const filteredTutorials = response.data.filter(tutorials => tutorials.courseid === courseId);
+
+        setTutorials(filteredTutorials);
+        console.log(filteredTutorials);
+
       } catch (error) {
         console.error('Error fetching tutorials:', error);
       }
@@ -32,7 +43,7 @@ function ViewTutorialsUser() {
   return (
     <div className="bg-blue-200 min-h-screen p-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-indigo-800 mb-6">Tutorials List</h2>
+        <h2 className="text-3xl font-semibold text-indigo-800 mb-6">Tutorials for {courseName}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tutorials.map((tutorial) => (
             <div key={tutorial._id}>

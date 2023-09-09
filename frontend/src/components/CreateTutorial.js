@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 function CreateTutorial() {
+  const { courseId, courseName } = useParams();
+  
   const [tutorialData, setTutorialData] = useState({
     title: '',
     description: '',
-    courseid: '',
+    courseid: courseId,
   });
 
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
+
+  
+
 
   useEffect(() => {
     async function fetchCourses() {
@@ -40,7 +47,7 @@ function CreateTutorial() {
       await axios.post('http://localhost:8080/tutorials/create', tutorialData);
 
       // Redirect to the "View Tutorials" page on success
-      navigate('/view-tutorials');
+      navigate('/getCourseAdmin');
     } catch (error) {
       console.error('Error creating tutorial:', error);
     }
@@ -48,7 +55,7 @@ function CreateTutorial() {
 
   return (
     <div className="bg-background min-h-screen p-8">
-      <h2 className="text-3xl font-semibold">Create Tutorial</h2>
+      <h2 className="text-3xl font-semibold">Create Tutorial for {courseName}</h2>
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="mb-4">
           <label htmlFor="title" className="block font-semibold text-primary mb-2">

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+
 
 
 function truncateDescription(description, maxLength) {
 
-  
+
 
   if (description.length <= maxLength) {
     return description;
@@ -15,8 +17,9 @@ function truncateDescription(description, maxLength) {
 }
 
 function ViewTutorialsAdmin() {
+  const { courseId, courseName } = useParams();
+
   const [tutorials, setTutorials] = useState([]);
-  const [id, setId] = useState('');
   const navigate = useNavigate();
 
 
@@ -25,7 +28,13 @@ function ViewTutorialsAdmin() {
     async function fetchTutorials() {
       try {
         const response = await axios.post('http://localhost:8080/tutorials/allT'); // Adjust the endpoint based on your API route
-        setTutorials(response.data);
+
+        // Filter tutorials based on courseId
+        const filteredTutorials = response.data.filter(tutorials => tutorials.courseid === courseId);
+
+        setTutorials(filteredTutorials);
+        console.log(filteredTutorials);
+
       } catch (error) {
         console.error('Error fetching tutorials:', error);
       }
@@ -45,7 +54,7 @@ function ViewTutorialsAdmin() {
     );
   };
   const handleUpdateTutorial = (tutorialId) => {
-    navigate(`/tutorials/update/${tutorialId}`);
+    navigate(`/tutorials/update/${tutorialId}/${courseId}/${courseName}`);
   };
 
   // Function to handle deleting a tutorial
@@ -63,7 +72,7 @@ function ViewTutorialsAdmin() {
   return (
     <div className="bg-AED2FF min-h-screen p-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-themeBlue mb-6">Tutorials List</h2>
+        <h2 className="text-3xl font-semibold text-themeBlue mb-6">Tutorials for {courseName}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tutorials.map((tutorial) => (
             <div key={tutorial._id}>
@@ -85,7 +94,7 @@ function ViewTutorialsAdmin() {
                 </p>
                 <div className="mt-4">
                   <button
-                    onClick={() => handleUpdateTutorial(tutorial._id)}
+                    onClick={() => handleUpdateTutorial(tutorial._id, courseId, courseName)}
                     className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
                   >
                     Update

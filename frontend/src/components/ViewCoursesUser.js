@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function truncateDescription(description, maxLength) {
   if (description.length <= maxLength) {
@@ -11,6 +11,9 @@ function truncateDescription(description, maxLength) {
 
 function ViewCoursesUser() {
   const [courses, setCourses] = useState([]);
+
+  const navigate = useNavigate(); // Use useNavigate hook to navigate
+
 
   useEffect(() => {
     // Fetch the list of courses from your server when the component mounts
@@ -36,6 +39,10 @@ function ViewCoursesUser() {
       )
     );
   };
+  
+  const ViewTute = async (courseId, courseName) => {
+    navigate(`/viewTutorials/${courseId}/${courseName}`);
+  }
 
   return (
     <div className="bg-blue-200 min-h-screen p-8">
@@ -60,6 +67,16 @@ function ViewCoursesUser() {
                     </span>
                   )}
                 </p>
+                <div className="mt-4">
+                  
+                  <button
+                  
+                    onClick={() => ViewTute(course._id, course.coursename)}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 inline-block mr-2"
+                  >
+                    View Tute
+                  </button>
+                </div>
               </div>
             </div>
           ))}

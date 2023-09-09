@@ -77,11 +77,11 @@ function App() {
                 <Route path='/resetPassword' element={<ResetPassword />} />
 
                 <Route path='/createCourse' element={<CreateCourse />} />
-                <Route path='/createTutorial' element={<CreateTutorial />} />
+                <Route path='/createTutorial/:courseId/:courseName' element={<CreateTutorial />} />
                 <Route path='/getCourseAdmin' element={<ViewCoursesAdmin />} />
-                <Route path='/getTutorialAdmin' element={<ViewTutorialsAdmin />} />
+                <Route path='/getTutorialAdmin/:courseId/:courseName' element={<ViewTutorialsAdmin />} />
                 <Route path='/courses/update/:courseId' element={<UpdateCourse />} />
-                <Route path='/tutorials/update/:tutorialId' element={<UpdateTutorial />} />
+                <Route path='/tutorials/update/:tutorialId/:courseId/:courseName' element={<UpdateTutorial />} />
 
 
               </Routes>
@@ -105,7 +105,7 @@ function App() {
                 <Route path="/createpost" element={<CreatePost />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/viewCourses" element={<ViewCoursesUser />} />
-                <Route path="/viewTutorials" element={<ViewTutorialsUser />} />
+                <Route path="/viewTutorials/:courseId/:courseName" element={<ViewTutorialsUser />} />
 
 
 
