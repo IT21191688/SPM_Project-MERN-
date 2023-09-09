@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 function truncateDescription(description, maxLength) {
+
+  
+
   if (description.length <= maxLength) {
     return description;
   }
@@ -11,6 +16,9 @@ function truncateDescription(description, maxLength) {
 
 function ViewTutorialsAdmin() {
   const [tutorials, setTutorials] = useState([]);
+  const [id, setId] = useState('');
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     // Fetch the list of tutorials from your server when the component mounts
@@ -35,6 +43,9 @@ function ViewTutorialsAdmin() {
           : tutorial
       )
     );
+  };
+  const handleUpdateTutorial = (tutorialId) => {
+    navigate(`/tutorials/update/${tutorialId}`);
   };
 
   // Function to handle deleting a tutorial
@@ -73,12 +84,12 @@ function ViewTutorialsAdmin() {
                   )}
                 </p>
                 <div className="mt-4">
-                  <Link
-                    to={`/tutorials/update/${tutorial._id}`}
+                  <button
+                    onClick={() => handleUpdateTutorial(tutorial._id)}
                     className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
                   >
                     Update
-                  </Link>
+                  </button>
                   <button
                     onClick={() => handleDeleteTutorial(tutorial._id)}
                     className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block"
