@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+function truncateDescription(description, maxLength) {
+  if (description.length <= maxLength) {
+    return description;
+  }
+  return description.substring(0, maxLength) + '...';
+}
 
 function ViewCoursesAdmin() {
   const [courses, setCourses] = useState([]);
+  const navigate = useNavigate(); // Use useNavigate hook to navigate
 
   useEffect(() => {
     // Fetch the list of courses from your server when the component mounts
@@ -19,11 +27,26 @@ function ViewCoursesAdmin() {
     fetchCourses();
   }, []);
 
+  // Function to toggle the visibility of additional content for a specific course
+  const toggleReadMore = (courseId) => {
+    setCourses((prevCourses) =>
+      prevCourses.map((course) =>
+        course._id === courseId
+          ? { ...course, showMore: !course.showMore }
+          : course
+      )
+    );
+  };
+
+  // Function to handle deleting a course
   const handleDeleteCourse = async (courseId) => {
     try {
       // Send a DELETE request to remove the course based on courseId
       await axios.delete(`http://localhost:8080/courses/delete/${courseId}`); // Adjust the endpoint based on your API route
-      // Optionally, you can update the courses list after deletion or display a success message
+      // After successful deletion, you can update the courses list or display a success message
+      setCourses((prevCourses) => prevCourses.filter((course) => course._id !== courseId));
+      // Redirect to ViewCoursesAdmin using navigate
+      navigate('/view-courses-admin');
     } catch (error) {
       console.error('Error deleting course:', error);
     }
@@ -38,7 +61,20 @@ function ViewCoursesAdmin() {
             <div key={course._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-purple-700 mb-2">{course.coursename}</h3>
-                <p className="text-gray-700">{course.description}</p>
+                <p className="text-gray-700">
+                  {course.showMore
+                    ? course.description // Show the full description when showMore is true
+                    : truncateDescription(course.description, 150)}{' '}
+                  {/* Truncate the description to 150 characters */}
+                  {course.description.length > 150 && (
+                    <span
+                      className="text-blue-700 cursor-pointer"
+                      onClick={() => toggleReadMore(course._id)}
+                    >
+                      {course.showMore ? '...Read Less' : '...Read More'}
+                    </span>
+                  )}
+                </p>
                 <div className="mt-4">
                   <Link
                     to={`/courses/update/${course._id}`}

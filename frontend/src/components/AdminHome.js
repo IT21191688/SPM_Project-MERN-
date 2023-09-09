@@ -16,7 +16,7 @@ export default function AdminHome() {
                     <h2>Course & Tutes</h2>
                     <div className="course-tutes-options">
                         <div className="course-tutes-option">
-                            <a href="/viewCourse" className="admin-option-link">
+                            <a href="/getCourseAdmin" className="admin-option-link">
                                 <h3>View Course</h3>
                                 <p>View and manage courses</p>
                             </a>
@@ -28,13 +28,13 @@ export default function AdminHome() {
                             </a>
                         </div>
                         <div className="course-tutes-option">
-                            <a href="/viewTutes" className="admin-option-link">
+                            <a href="/getTutorialAdmin" className="admin-option-link">
                                 <h3>View Tutes</h3>
                                 <p>View and manage tutorials</p>
                             </a>
                         </div>
                         <div className="course-tutes-option">
-                            <a href="/createTutes" className="admin-option-link">
+                            <a href="/createTutorial" className="admin-option-link">
                                 <h3>Create Tutes</h3>
                                 <p>Create new tutorials</p>
                             </a>
