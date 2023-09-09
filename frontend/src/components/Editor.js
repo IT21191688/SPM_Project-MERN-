@@ -3,6 +3,7 @@ import CodeMirror from 'codemirror'; // Import CodeMirror correctly
 import CodeMirrorEditor from '../services/CodeMirrorEditor';
 import { GlobalContext } from '../services/GlobleContext'; // Correct the import path
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
     createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern,
