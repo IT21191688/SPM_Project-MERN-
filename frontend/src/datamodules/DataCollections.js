@@ -224,7 +224,12 @@ export function findtextSize(text) {
     return functionText;
 }
 
-
+export function createBreakStatement() {
+    const functionText =`
+    break;
+    `;
+    return functionText;
+}
 
 
 

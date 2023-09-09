@@ -6,7 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
-    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize,
+    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize,createBreakStatement,
     createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs
 } from '../datamodules/DataCollections';
 
@@ -65,6 +65,7 @@ function Editor(props) {
             'create square star pattern': createStarPatternCommand,
             'summation': createsummation,
             'find text size': findAndDisplayTextSize,
+            'create break statement': createBreakStatement,
 
         },
         'Java': {
@@ -221,7 +222,7 @@ function Editor(props) {
                 if (argument) {
                     let keyword = '';
 
-                    if (command === 'create loop' || command === 'create if else') {
+                    if (command === 'create loop' || command === 'create if else' ) {
                         const condition = extractConditionFromArgument(argument);
                         keyword = selectedLanguageHandlers[command](condition);
                     } else {
@@ -232,6 +233,16 @@ function Editor(props) {
                     setIsListening(false);
                     return;
                 }
+
+                if (command === 'create break statement') {
+                    const breakStatement = selectedLanguageHandlers[command](argument);
+                    if (breakStatement) {
+                        setKeywords(breakStatement);
+                        setIsListening(false);
+                    }
+                    return;
+                }
+
             }
         }
 

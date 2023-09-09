@@ -62,7 +62,7 @@ export default function Guidence() {
                 <ul className="list-decimal list-inside mb-5">
                     <li className="mb-1"><strong>"create loop with condition i less than 10"::</strong>  Generates a for loop with the specified condition.</li>
                     <li className="mb-1"><strong>"create if else statement with condition x greater than 5":</strong>  Generates an if-else statement with the specified condition.</li>
-                    <li className="mb-1"><strong>"create star pattern"::</strong>  Generates star pattern using the specified condition.</li>
+                    <li className="mb-1"><strong>"create break statement":</strong>  Generates an break statement with the specified condition.</li>
                     <li className="mb-1"><strong>"print variableName":</strong>  Generates a console log statement to print the specified variable.</li>
                     <li className="mb-1"><strong> "create constant":</strong> Generates a constant declaration.</li>
                     <li className="mb-1"><strong>"create object with attributes name and age":</strong>  Generates an object declaration with attributes.</li>
@@ -73,6 +73,7 @@ export default function Guidence() {
             </div>
             <div className={`${currentPage === 3 ? 'block' : 'hidden'}`}>
                 <ul className="list-decimal list-inside mb-5">
+                    <li className="mb-1"><strong>"create star pattern"::</strong>  Generates star pattern using the specified condition.</li>
                     <li className="mb-1"><strong>"summation":</strong>  Generates summation using two integer type inputs.</li>
                     <li className="mb-1"><strong>"find text size":</strong>  Generates a code using .length.</li>
                     <li className="mb-1"><strong>"comment hello":</strong>  Generates a comment.</li>
