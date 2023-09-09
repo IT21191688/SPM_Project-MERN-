@@ -404,7 +404,7 @@ function Editor(props) {
                                     </ul>
                                 </div>
                             </div>
-                            <h2 className="mb-3">Say Your Code</h2>
+                            <h1 className="mb-3"><b>Say Your Code</b></h1>
                             <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
                                 {transcript}
                             </div>
