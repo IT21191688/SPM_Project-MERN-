@@ -74,7 +74,7 @@ export default function Guidence() {
             <div className={`${currentPage === 3 ? 'block' : 'hidden'}`}>
                 <ul className="list-decimal list-inside mb-5">
                     <li className="mb-1"><strong>"summation":</strong>  Generates summation using two integer type inputs.</li>
-                    <li className="mb-1"><strong>"find the text size":</strong>  Generates a code using .length.</li>
+                    <li className="mb-1"><strong>"find text size":</strong>  Generates a code using .length.</li>
                     <li className="mb-1"><strong>"comment hello":</strong>  Generates a comment.</li>
                     <li className="mb-1"><strong>"call function functionName":</strong>  Generates a function call.</li>
                     <li className="mb-1"><strong>"create class ClassName":</strong>  Generates a class definition.</li>

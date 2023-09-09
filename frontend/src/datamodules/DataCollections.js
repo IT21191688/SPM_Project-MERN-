@@ -216,11 +216,11 @@ export function summation(num1, num2) {
 }
 
 //string text size
-export function findtextSize(text){
-    const functionText=`
-    text = '';
-    let size = ${text}.length;
-    console.log('Text size:', size);`
+export function findtextSize(text) {
+    const functionText = `
+        let size = ${JSON.stringify(text)}.length;
+        console.log('Text size:', size);
+    `;
     return functionText;
 }
 
