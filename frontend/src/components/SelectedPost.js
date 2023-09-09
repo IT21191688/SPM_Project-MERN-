@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../css/selectedPost.css'; // Import the separate CSS file for SelectedPost
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import jwt from 'jwt-decode'
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 
 
@@ -159,6 +160,8 @@ function SelectedPost(props) {
                     .catch((error) => {
                         console.error('Error deleting comments:', error);
                     });
+                navigate('/allpost/');
+
             })
             .catch((error) => {
                 console.error('Error fetching comments:', error);
@@ -199,12 +202,13 @@ function SelectedPost(props) {
         setEditComment({ id: null, text: '' });
     };
 
+    
 
     return (
         <div className="container mx-auto p-4">
             <div className="bg-white rounded-lg shadow-md p-6">
                 <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
-                <p className="text-themeBlue">{post.content}</p>
+                <pre style={{ whiteSpace: 'pre-wrap' }}>{post.content}</pre>
                 <br /><br />
                 <div className="blog-author">
                     Author: {post.name}
@@ -235,8 +239,8 @@ function SelectedPost(props) {
                     {comments.map((comment) => (
                         <div key={comment._id} className="comment mb-6">
                             <p className="text-themeBlue">{comment.text}</p>
-                            <br/>
-                            <div style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#27005D', opacity: '0.7'}}>
+                            <br />
+                            <div style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#27005D', opacity: '0.7' }}>
                                 Author: {comment.name}
                             </div>
                             <div className="flex mt-2">
