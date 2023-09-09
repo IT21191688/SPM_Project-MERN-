@@ -22,6 +22,16 @@ import CreatePost from './components/CreatePost';
 import SelectedPost from './components/SelectedPost';
 import UpdatePost from './components/UpdatePost';
 import About from './components/About';
+import CreateCourse from './components/CreateCourse';
+import ViewCoursesAdmin from './components/ViewCoursesAdmin';
+import UpdateCourse from './components/UpdateCourse'; // Import the UpdateCourse component
+import ViewCoursesUser from './components/ViewCoursesUser';
+import ViewTutorialsUser from './components/ViewTutorialsUser';
+import ViewTutorialsAdmin from './components/ViewTutorialsAdmin';
+import CreateTutorial from './components/CreateTutorial';
+import UpdateTutorial from './components/UpdateTutorial';
+
+
 
 import Cookies from 'js-cookie';
 
@@ -66,6 +76,14 @@ function App() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/resetPassword' element={<ResetPassword />} />
 
+                <Route path='/createCourse' element={<CreateCourse />} />
+                <Route path='/createTutorial' element={<CreateTutorial />} />
+                <Route path='/getCourseAdmin' element={<ViewCoursesAdmin />} />
+                <Route path='/getTutorialAdmin' element={<ViewTutorialsAdmin />} />
+                <Route path='/courses/update/:courseId' element={<UpdateCourse />} />
+                <Route path='/tutorials/update/:tutorialId' element={<UpdateTutorial />} />
+
+
               </Routes>
             </Router>
 
@@ -86,6 +104,11 @@ function App() {
                 <Route path="/editpost/:postId" element={<UpdatePost />} />
                 <Route path="/createpost" element={<CreatePost />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/viewCourses" element={<ViewCoursesUser />} />
+                <Route path="/viewTutorials" element={<ViewTutorialsUser />} />
+
+
+
 
               </Routes>
 

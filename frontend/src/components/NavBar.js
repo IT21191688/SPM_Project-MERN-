@@ -12,6 +12,8 @@ import {
     faFileCode,
     faSignInAlt,
     faUserPlus,
+    faBook,
+    faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -19,6 +21,7 @@ export default function NavBarUser() {
     const [user, setUser] = useState({});
     const [role, setRole] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isDropdownOpenC, setIsDropdownOpenC] = useState(false);
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -26,6 +29,14 @@ export default function NavBarUser() {
 
     const closeDropdown = () => {
         setIsDropdownOpen(false);
+    };
+
+    const toggleDropdownC = () => {
+        setIsDropdownOpenC(!isDropdownOpen);
+    };
+
+    const closeDropdownC = () => {
+        setIsDropdownOpenC(false);
     };
 
     const logOut = () => {
@@ -50,6 +61,50 @@ export default function NavBarUser() {
                         <ul className="flex space-x-4 text-white">
                             {role === 'admin' && (
                                 <>
+
+                                    <li
+                                        className="nav-item relative group"
+                                        onMouseEnter={toggleDropdownC}
+                                        onMouseLeave={closeDropdownC}
+                                    >
+                                        <button className="nav-link focus:outline-none">
+                                            <FontAwesomeIcon icon={faBook} /> Courese & Tutes
+                                            <FontAwesomeIcon
+                                                icon={faChevronDown}
+                                                className={`ml-1 fas fa-chevron-down ${isDropdownOpenC ? 'rotate-180' : ''}`}
+                                            />
+                                        </button>
+                                        <div
+                                            className={`${isDropdownOpenC ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                                                } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${isDropdownOpenC ? 'scale-y-100' : 'scale-y-0'
+                                                }`}
+                                        >
+                                            <ul className="bg-white text-black border border-gray-200 rounded-lg">
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/getCourseAdmin'}>
+                                                        View Course
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/createCourse'}>
+                                                        Create Course
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/getTutorialAdmin'}>
+                                                        View Tutes
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/createTutorial'}>
+                                                        Create Tutes
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
                                     <li
                                         className="nav-item relative group"
                                         onMouseEnter={toggleDropdown}
@@ -101,6 +156,45 @@ export default function NavBarUser() {
                                             <FontAwesomeIcon icon={faCode} /> Code Editor
                                         </a>
                                     </li>
+
+
+                                    <li
+                                        className="nav-item relative group"
+                                        onMouseEnter={toggleDropdownC}
+                                        onMouseLeave={closeDropdownC}
+                                    >
+                                        <button className="nav-link focus:outline-none">
+                                            <FontAwesomeIcon icon={faGraduationCap} /> Courese & Tutes
+                                            <FontAwesomeIcon
+                                                icon={faChevronDown}
+                                                className={`ml-1 fas fa-chevron-down ${isDropdownOpenC ? 'rotate-180' : ''}`}
+                                            />
+                                        </button>
+                                        <div
+                                            className={`${isDropdownOpenC ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                                                } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${isDropdownOpenC ? 'scale-y-100' : 'scale-y-0'
+                                                }`}
+                                        >
+                                            <ul className="bg-white text-black border border-gray-200 rounded-lg">
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewCourses'}>
+                                                        View Course
+                                                    </a>
+                                                </li>
+                                              
+                                                <li>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
+                                                        View Tutes
+                                                    </a>
+                                                </li>
+                                              
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
+
+
                                     <li className="nav-item">
                                         <a className="nav-link" href="/allpost">
                                             <FontAwesomeIcon icon={faFileCode} /> Review Code
