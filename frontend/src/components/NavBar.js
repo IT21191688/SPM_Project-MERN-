@@ -61,6 +61,11 @@ export default function NavBarUser() {
                         <ul className="flex space-x-4 text-white">
                             {role === 'admin' && (
                                 <>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/adminHome">
+                                            <FontAwesomeIcon icon={faHome} /> Admin Home
+                                        </a>
+                                    </li>
 
                                     <li
                                         className="nav-item relative group"
@@ -181,13 +186,13 @@ export default function NavBarUser() {
                                                         View Course
                                                     </a>
                                                 </li>
-                                              
+
                                                 <li>
                                                     <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
                                                         View Tutes
                                                     </a>
                                                 </li>
-                                              
+
                                             </ul>
                                         </div>
                                     </li>
