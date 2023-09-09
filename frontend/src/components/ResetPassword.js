@@ -100,10 +100,13 @@ export default function ResetPassword() {
                         Submit
                     </button>
 
+                    <div className='w-4'></div> {/* Add a small space */}
+
                     <a href='/profile' className='bg-red-500 hover:bg-red-600 text-white font-medium rounded-md py-2 px-4 w-48 text-center' onClick={cancel}>
                         Cancel
                     </a>
                 </div>
+
             </form>
         </div>
     )

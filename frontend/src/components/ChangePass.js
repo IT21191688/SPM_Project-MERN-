@@ -63,32 +63,33 @@ export default function ChangePass() {
                             <input type="email" className="form-control" placeholder="Enter email" value={email} disabled />
                         </div>
                     </div>
-                    <br />
+
                     <div className='row'>
                         <div className="form-group col-md-12">
                             <label>New Password</label>
                             <input type="password" className="form-control" placeholder="Enter new password" onChange={e => setNewPassword(e.target.value)} />
                         </div>
                     </div>
-                    <br />
+
                     <div className='row'>
                         <div className="form-group col-md-12">
                             <label>Confirm Password</label>
                             <input type="password" className="form-control" placeholder="Confirm new password" onChange={e => setPassword(e.target.value)} />
                         </div>
                     </div>
-                    <br />
-                    <button type="submit" className="btn btn-success btn-block font-medium rounded-lg text-sm text-white px-5 py-2.5" onClick={resetSubmit}>
+
+                    <button type="submit" className="btn-secondary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800" onClick={resetSubmit}>
                         Submit
                     </button>
-                    <br />
-                    <button type="submit" className="btn btn-danger btn-block font-medium rounded-lg text-sm text-white px-5 py-2.5" onClick={cancel}>
+
+                    <button type="submit" className="btn-secondary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-red-300 dark:focus:ring-red-800" onClick={cancel}>
                         Cancel
                     </button>
-                    <br />
+
                 </form>
             </div>
         </div>
+
     )
 
 
