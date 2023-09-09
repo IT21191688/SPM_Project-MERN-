@@ -236,7 +236,7 @@ function SelectedPost(props) {
                         <div key={comment._id} className="comment mb-6">
                             <p className="text-themeBlue">{comment.text}</p>
                             <br/>
-                            <div style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#27005D' }}>
+                            <div style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#27005D', opacity: '0.7'}}>
                                 Author: {comment.name}
                             </div>
                             <div className="flex mt-2">
