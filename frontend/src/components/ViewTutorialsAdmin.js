@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+function truncateDescription(description, maxLength) {
+  if (description.length <= maxLength) {
+    return description;
+  }
+  return description.substring(0, maxLength) + '...';
+}
+
 function ViewTutorialsAdmin() {
   const [tutorials, setTutorials] = useState([]);
 
@@ -19,11 +26,24 @@ function ViewTutorialsAdmin() {
     fetchTutorials();
   }, []);
 
+  // Function to toggle the visibility of additional content for a specific tutorial
+  const toggleReadMore = (tutorialId) => {
+    setTutorials((prevTutorials) =>
+      prevTutorials.map((tutorial) =>
+        tutorial._id === tutorialId
+          ? { ...tutorial, showMore: !tutorial.showMore }
+          : tutorial
+      )
+    );
+  };
+
+  // Function to handle deleting a tutorial
   const handleDeleteTutorial = async (tutorialId) => {
     try {
       // Send a DELETE request to remove the tutorial based on tutorialId
       await axios.delete(`http://localhost:8080/tutorials/deleteT/${tutorialId}`); // Adjust the endpoint based on your API route
-      // Optionally, you can update the tutorials list after deletion or display a success message
+      // After successful deletion, you can update the tutorials list or display a success message
+      setTutorials((prevTutorials) => prevTutorials.filter((tutorial) => tutorial._id !== tutorialId));
     } catch (error) {
       console.error('Error deleting tutorial:', error);
     }
@@ -38,7 +58,20 @@ function ViewTutorialsAdmin() {
             <div key={tutorial._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-themePurple mb-2">{tutorial.title}</h3>
-                <p className="text-gray-700">{tutorial.description}</p>
+                <p className="text-gray-700">
+                  {tutorial.showMore
+                    ? tutorial.description // Show the full description when showMore is true
+                    : truncateDescription(tutorial.description, 150)}{' '}
+                  {/* Truncate the description to 150 characters */}
+                  {tutorial.description.length > 150 && (
+                    <span
+                      className="text-themeBlue cursor-pointer"
+                      onClick={() => toggleReadMore(tutorial._id)}
+                    >
+                      {tutorial.showMore ? '...Read Less' : '...Read More'}
+                    </span>
+                  )}
+                </p>
                 <div className="mt-4">
                   <Link
                     to={`/tutorials/update/${tutorial._id}`}

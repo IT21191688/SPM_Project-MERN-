@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 function ViewTutorialsUser() {
   const [tutorials, setTutorials] = useState([]);
@@ -19,22 +18,40 @@ function ViewTutorialsUser() {
     fetchTutorials();
   }, []);
 
+  // Function to toggle the visibility of additional content for a specific tutorial
+  const toggleReadMore = (tutorialId) => {
+    setTutorials((prevTutorials) =>
+      prevTutorials.map((tutorial) =>
+        tutorial._id === tutorialId
+          ? { ...tutorial, showMore: !tutorial.showMore }
+          : tutorial
+      )
+    );
+  };
+
   return (
-    <div className="bg-AED2FF min-h-screen p-8">
+    <div className="bg-blue-200 min-h-screen p-8">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-27005D mb-6">Tutorials List</h2>
+        <h2 className="text-3xl font-semibold text-indigo-800 mb-6">Tutorials List</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tutorials.map((tutorial) => (
             <div key={tutorial._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-xl font-semibold text-9400FF mb-2">{tutorial.title}</h3>
-                <p className="text-gray-700">{tutorial.description}</p>
-                <Link
-                  to={`/tutorials/update/${tutorial._id}`} // Use the tutorial ID to create the update URL
-                  className="mt-4 bg-27005D text-white px-4 py-2 rounded-md hover:bg-9400FF transition duration-300 inline-block"
-                >
-                  Update
-                </Link>
+                <h3 className="text-xl font-semibold text-purple-500 mb-2">{tutorial.title}</h3>
+                <p className="text-gray-700">
+                  {tutorial.showMore
+                    ? tutorial.description // Show the full description when showMore is true
+                    : tutorial.description.slice(0, 150) + '...'}{' '}
+                  {/* Truncate the description to 150 characters */}
+                  {tutorial.description.length > 150 && (
+                    <span
+                      className="text-blue-500 cursor-pointer"
+                      onClick={() => toggleReadMore(tutorial._id)}
+                    >
+                      {tutorial.showMore ? '...Read Less' : '...Read More'}
+                    </span>
+                  )}
+                </p>
               </div>
             </div>
           ))}
