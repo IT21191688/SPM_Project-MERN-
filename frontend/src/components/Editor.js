@@ -6,7 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
-    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern,
+    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern,summation,findtextSize,
     createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs
 } from '../datamodules/DataCollections';
 
@@ -63,6 +63,8 @@ function Editor(props) {
             'call function': callFunctionJs,
             'create star pattern': createStarPatternCommand,
             'create square star pattern': createStarPatternCommand,
+            'summation':createsummation,
+            'find text size':findAndDisplayTextSize,
 
         },
         'Java': {
@@ -136,6 +138,48 @@ function Editor(props) {
 
     }
 
+    function createsummation() {
+        
+        const input = prompt('Enter two numbers separated by a space:');
+      
+        // Split the input into an array using a space as the delimiter
+        const inputArray = input.split(' ');
+      
+        // Check if there are exactly two elements in the array
+        if (inputArray.length === 2) {
+          const num1 = parseInt(inputArray[0]);
+          const num2 = parseInt(inputArray[1]);
+      
+          if (!isNaN(num1) && !isNaN(num2)) {
+            // Both inputs are valid integers
+            console.log('First number:', num1);
+            console.log('Second number:', num2);
+      
+            // Perform summation
+            const result = summation(num1,num2);
+            return result; // Return the result
+          } else {
+            console.log('Invalid input. Please enter two valid numbers separated by a space.');
+          }
+        } else {
+          console.log('Invalid input format. Please enter two numbers separated by a space.');
+        }
+        
+      }
+
+      function findAndDisplayTextSize() {
+        const text = prompt('Enter the text:');
+        
+        // Ensure text is not empty or null before passing it to the findtextSize function
+        if (text !== null && text.trim() !== '') {
+            const size = findtextSize(text);
+            return size;
+        } else {
+            console.log('Invalid input. Please enter a non-empty text.');
+        }
+    }
+      
+
     function processTranscript(transcript) {
         const normalizedTranscript = transcript.toLowerCase();
         const selectedLanguageHandlers = languageCommandHandlers[language];
@@ -148,6 +192,24 @@ function Editor(props) {
                     const code = selectedLanguageHandlers[command](argument);
                     if (code) {
                         setKeywords(code);
+                        setIsListening(false);
+                    }
+                    return;
+                }
+
+                if (command === 'summation') {
+                    const result = selectedLanguageHandlers[command](argument);
+                    if (result) {
+                        setKeywords(result);
+                        setIsListening(false);
+                    }
+                    return;
+                }
+
+                if (command === 'find text size') {
+                    const text = selectedLanguageHandlers[command](argument);
+                    if (text) {
+                        setKeywords(text);
                         setIsListening(false);
                     }
                     return;

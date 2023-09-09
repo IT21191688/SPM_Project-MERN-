@@ -77,6 +77,8 @@ export default function Guidence() {
             <div className={`${Style['voice-guide-page']} ${currentPage === 3 ? 'd-block' : 'd-none'}`}>
                 <ul className={`mb-5 ${Style['voice-guide-list']}`} >
 
+                    <li><strong>"summation":</strong> Generates summation using two integer type inputs.</li>
+                    <li><strong>"find the text size":</strong>Generates a code using .length.</li>
                     <li><strong>"comment hello":</strong> Generates a comment.</li>
                     <li><strong>"call function functionName":</strong>Generates a function call.</li>
                     <li><strong>"create class ClassName":</strong>Generates a class definition.</li>
