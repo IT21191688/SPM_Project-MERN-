@@ -123,16 +123,23 @@ export default function Login() {
                         />
                     </div>
 
-                    <div className='flex justify-between items-center'>
+                    <div className="flex justify-between items-center">
                         <button
                             type="submit"
-                            className='bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-300 text-white rounded-md py-2 px-4 w-1/2'
+                            className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:from-green-500 hover:via-green-600 hover:to-green-700 focus:ring-4 focus:ring-green-300 text-white rounded-md py-2 px-4 w-1/2"
                         >
                             Login
                         </button>
 
-                        <Link to='/register' className='text-blue-500 hover:underline'>Register</Link>
+                        <Link
+                            to="/register"
+                            className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300 text-white rounded-md py-2 px-4 w-1/2 ml-2"
+                        >
+                            Register
+                        </Link>
                     </div>
+
+
 
                     <div className='mt-4 text-center'>
                         <button

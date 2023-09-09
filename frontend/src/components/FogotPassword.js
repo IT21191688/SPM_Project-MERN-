@@ -16,8 +16,8 @@ export default function FogotPassword() {
 
     const keySubmit = async (e) => {
         e.preventDefault();
-
         try {
+
 
             if (enteredvalue === verificationCode) {
 
@@ -27,7 +27,7 @@ export default function FogotPassword() {
             } else {
 
                 alert("Your Varification code not valid Please try Again")
-                window.location.reload('/login');
+                navigate('/login');
 
             }
 
@@ -78,8 +78,8 @@ export default function FogotPassword() {
 
         <div className="container flex justify-center items-center min-h-screen">
             <div className="pb-10">
-                <form className="mt-20 border rounded-lg shadow-xl p-5 w-96">
-                    <h1 className="text-primary text-2xl font-bold mb-6 text-center">Change Password</h1>
+                <form className="mt-0 border rounded-lg shadow-xl p-5 w-96">
+                    <h1 className="text-3xl font-bold text-center text-primary mb-6">Change Password</h1>
 
                     <div className="mb-4">
                         <label htmlFor="userName" className="block text-sm font-medium text-gray-700">
@@ -88,7 +88,7 @@ export default function FogotPassword() {
                         <input
                             type="email"
                             id="userName"
-                            className="form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             placeholder="Enter Your Email"
                             onChange={(e) => setUserName(e.target.value)}
                         />
@@ -102,6 +102,7 @@ export default function FogotPassword() {
                         >
                             Send Verification Code
                         </button>
+
                     </div>
 
                     <div className="mb-4">
@@ -111,16 +112,16 @@ export default function FogotPassword() {
                         <input
                             type="text"
                             id="verificationCode"
-                            className="form-input mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-green-400 focus:ring focus:ring-green-300 dark:focus:ring-green-800"
+                            className="mt-1 block w-full py-2 px-3 rounded-md focus:ring focus:ring-opacity-50 focus:ring-blue-400 focus:border-blue-400"
                             placeholder="Enter Verification Code"
-                            onChange={(e) => setVerificationCode(e.target.value)}
+                            onChange={(e) => setEnteredvalue(e.target.value)}
                         />
                     </div>
 
                     <div className="mb-6">
                         <button
                             type="button"
-                            className="btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-green-300 dark:focus:ring-green-800"
+                            className="btn-primary w-full py-2.5 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                             onClick={keySubmit}
                         >
                             Submit
@@ -137,6 +138,7 @@ export default function FogotPassword() {
                 </form>
             </div>
         </div>
+
     )
 
 
