@@ -5,6 +5,8 @@ import '../css/selectedPost.css'; // Import the separate CSS file for SelectedPo
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faSave } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
+import jwt from 'jwt-decode'
+
 
 
 
@@ -18,6 +20,35 @@ function SelectedPost(props) {
     const [editComment, setEditComment] = useState({ id: null, text: '' });
     const [commentReplies, setCommentReplies] = useState({});
     const navigate = useNavigate();
+
+    const [name, setName] = useState('');
+
+
+    useEffect(() => {
+
+        const fetchProfileDetails = async () => {
+            const token = localStorage.getItem('token')
+            const decoded = jwt(token);
+            const userId = decoded.userId;
+
+            try {
+
+
+                const response = await axios.post("http://localhost:8080/auth/profile", { userId });
+
+                setName(response.data.firstname + ' ' + response.data.lastname);
+
+            } catch (error) {
+                alert('Data Load Unsuccessfull' + error);
+                console.log(error);
+            }
+        };
+
+        fetchProfileDetails();
+
+
+
+    }, [])
 
 
     useEffect(() => {
@@ -50,6 +81,7 @@ function SelectedPost(props) {
         axios.post(`http://localhost:8080/api/comments/posts/${postId}/comments`, {
             postId,
             text: newComment,
+            name: name,
         })
             .then((response) => {
                 // Update the comments state with the newly added comment
@@ -173,6 +205,10 @@ function SelectedPost(props) {
             <div className="bg-white rounded-lg shadow-md p-6">
                 <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
                 <p className="text-themeBlue">{post.content}</p>
+                <br /><br />
+                <div className="blog-author">
+                    Author: {post.name}
+                </div>
 
                 <div className="flex mt-4">
                     <button
@@ -199,6 +235,10 @@ function SelectedPost(props) {
                     {comments.map((comment) => (
                         <div key={comment._id} className="comment mb-6">
                             <p className="text-themeBlue">{comment.text}</p>
+                            <br/>
+                            <div style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#27005D' }}>
+                                Author: {comment.name}
+                            </div>
                             <div className="flex mt-2">
                                 <button
                                     className="btn post-button mr-2 text-themePurple hover:text-themeBlue"

@@ -5,6 +5,7 @@ exports.createComment = async (req, res) => {
   try {
     const comment = new Comment({
       text: req.body.text,
+      name: req.body.name,
       post: req.params.postId, // Assuming you pass the post ID in the URL
     });
     await comment.save();

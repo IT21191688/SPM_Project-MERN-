@@ -6,6 +6,7 @@ exports.createPost = async (req, res) => {
     const post = new Post({
       title: req.body.title,
       content: req.body.content,
+      name: req.body.name,
     });
     await post.save();
     res.status(201).json(post);
