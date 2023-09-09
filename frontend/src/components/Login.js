@@ -133,10 +133,10 @@ export default function Login() {
 
                         <Link
                             to="/register"
-                            className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300 text-white rounded-md py-2 px-4 w-1/2 ml-2"
-                        >
+                            className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:from-blue-500 hover:via-blue-600 hover:to-blue-700 focus:ring-4 focus:ring-blue-300 text-white rounded-md py-2 px-4 w-1/2 ml-2 text-center">
                             Register
                         </Link>
+
                     </div>
 
 
