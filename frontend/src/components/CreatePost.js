@@ -51,35 +51,44 @@ function CreatePost() {
   };
 
   return (
-    <div className="container create-post">
-      <h2 className="create-post-title">Create a New Post</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            className="form-control"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="content">Content:</label>
-          <textarea
-            id="content"
-            value={content}
-            onChange={handleContentChange}
-            rows="4"
-            className="form-control"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="btn create-post-btn">
-          Create Post
-        </button>
-      </form>
+    <div className="container mx-auto p-4">
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-3xl font-semibold text-themeBlue mb-4">Create a New Post</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-themeBlue text-lg font-semibold mb-2">
+              Title:
+            </label>
+            <input
+              type="text"
+              id="title"
+              value={title}
+              onChange={handleTitleChange}
+              className="form-input w-full p-2 border border-themeLightGray rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="content" className="block text-themeBlue text-lg font-semibold mb-2">
+              Content:
+            </label>
+            <textarea
+              id="content"
+              value={content}
+              onChange={handleContentChange}
+              rows="4"
+              className="form-textarea w-full p-2 border border-themeLightGray rounded-md"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="btn create-post-btn bg-themePurple hover:bg-themeBlue text-white py-2 px-4 rounded-md transition duration-300"
+          >
+            Create Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

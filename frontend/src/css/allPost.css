@@ -3,12 +3,13 @@
     max-width: 1500px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #AED2FF;
   }
   
   h2.mt-5.mb-4 {
     font-size: 70px;
     margin-top: 30px;
-    margin-bottom: 20px;
+    padding-bottom: 50px;
     color: #27005D;
   }
   

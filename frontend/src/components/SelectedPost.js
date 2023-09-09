@@ -22,17 +22,6 @@ function SelectedPost(props) {
 
     useEffect(() => {
 
-
-
-
-
-
-
-
-
-
-
-        
         // Fetch the selected post's details
         axios.get(`http://localhost:8080/api/posts/posts/${postId}`)
             .then((response) => {
@@ -179,83 +168,104 @@ function SelectedPost(props) {
     };
 
 
-
-
-
     return (
-        <div className="container selected-post">
-            <h2 className="selected-post-title"></h2>
-            <h3 className="post-title">{post.title}</h3>
-            <p className="post-content">{post.content}</p>
+        <div className="container mx-auto p-4">
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
+                <p className="text-themeBlue">{post.content}</p>
 
-            {/* Use FontAwesome icons for Delete Post and Update Post */}
-            <button className="btn post-button" onClick={handleDeletePost}>
-                <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <button className="btn post-button" onClick={handleUpdatePost}>
-                <FontAwesomeIcon icon={faEdit} />
-            </button>
+                <div className="flex mt-4">
+                    <button
+                        className="btn post-button mr-4 text-themePurple hover:text-themeBlue"
+                        onClick={handleDeletePost}
+                    >
+                        Delete Post
+                    </button>
+                    <button
+                        className="btn post-button text-themePurple hover:text-themeBlue"
+                        onClick={handleUpdatePost}
+                    >
+                        Edit Post
+                    </button>
+                </div>
 
-            <hr />
+                {/* Border removed here */}
+                <hr className="my-6" />
 
-            <h1>Reviews and Comments</h1>
+                <h2 className="text-2xl font-semibold text-themeBlue">Reviews and Comments</h2>
 
-            <div className="comment-container">
-                {comments.map((comment) => (
-                    <div key={comment._id} className="comment">
-                        {/* Comment content */}
-                        <p className="comment-text">{comment.text}</p>
-                        <button className="btn post-button" onClick={() => handleDeleteComment(comment._id)}>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                        <button className="btn post-button" onClick={() => handleEditComment(comment._id, comment.text)}>
-                            <FontAwesomeIcon icon={faEdit} />
-                        </button>
-                        <button className="btn post-button" onClick={() => handleReplyComment(comment._id)}>
-                            Reply
-                        </button>
-
-                        {/* Reply textarea and button */}
-                        {comment._id === editComment.id && (
-                            <div>
-                                <textarea
-                                    value={editComment.text}
-                                    onChange={(e) => setEditComment({ id: comment._id, text: e.target.value })}
-                                    rows="4"
-                                    className="form-control comment-edit-textarea"
-                                />
-                                <button className="btn post-button" onClick={() => handleUpdateComment(comment._id)}>
-                                    <FontAwesomeIcon icon={faSave} /> Save
+                {/* Remove border from comment-container */}
+                <div className="comment-container mt-4">
+                    {comments.map((comment) => (
+                        <div key={comment._id} className="comment mb-6">
+                            <p className="text-themeBlue">{comment.text}</p>
+                            <div className="flex mt-2">
+                                <button
+                                    className="btn post-button mr-2 text-themePurple hover:text-themeBlue"
+                                    onClick={() => handleDeleteComment(comment._id)}
+                                >
+                                    Delete Comment
+                                </button>
+                                <button
+                                    className="btn post-button mr-2 text-themePurple hover:text-themeBlue"
+                                    onClick={() => handleEditComment(comment._id, comment.text)}
+                                >
+                                    Edit Comment
+                                </button>
+                                <button
+                                    className="btn post-button text-themePurple hover:text-themeBlue"
+                                    onClick={() => handleReplyComment(comment._id)}
+                                >
+                                    Reply
                                 </button>
                             </div>
-                        )}
 
-                        {/* Display replies */}
-                        {commentReplies[comment._id] && (
-                            <div className="replies">
-                                {commentReplies[comment._id].map((reply) => (
-                                    <div key={reply.id} className="reply">
-                                        <p className="reply-text">{reply.text}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
+                            {comment._id === editComment.id && (
+                                <div className="mt-4">
+                                    <textarea
+                                        value={editComment.text}
+                                        onChange={(e) => setEditComment({ id: comment._id, text: e.target.value })}
+                                        rows="4"
+                                        className="form-control comment-edit-textarea"
+                                    />
+                                    <button
+                                        className="btn post-button mt-2 text-themePurple hover:text-themeBlue"
+                                        onClick={() => handleUpdateComment(comment._id)}
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            )}
 
-            <div className="comment-add-container">
-                <h3 className="post-title">Add a Comment</h3>
-                <textarea
-                    value={newComment}
-                    onChange={handleCommentChange}
-                    rows="4"
-                    className="form-control comment-add-textarea"
-                    placeholder="Write a comment..."
-                />
-                <button className="btn post-button" onClick={handleSubmitComment}>
-                    Add Comment
-                </button>
+                            {commentReplies[comment._id] && (
+                                <div className="replies mt-4">
+                                    {commentReplies[comment._id].map((reply) => (
+                                        <div key={reply.id} className="reply mb-2">
+                                            <p className="text-themeBlue">{reply.text}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+
+                <div className="comment-add-container mt-6">
+                    <h2 className="text-2xl font-semibold text-themeBlue">Add a Comment</h2>
+                    <textarea
+                        value={newComment}
+                        onChange={handleCommentChange}
+                        rows="4"
+                        className="form-control comment-add-textarea mt-2"
+                        placeholder="Write a comment..."
+                    />
+                    <button
+                        className="btn post-button mt-2 text-themePurple hover:text-themeBlue"
+                        onClick={handleSubmitComment}
+                    >
+                        Add Comment
+                    </button>
+                </div>
             </div>
         </div>
     );

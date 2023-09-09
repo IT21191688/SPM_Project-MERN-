@@ -47,35 +47,45 @@ function UpdatePost(props) {
   };
 
   return (
-    <div className="container update-post">
-      <h2 className="update-post-title">Update Post</h2>
-      <form className="update-form">
-        <div>
-          <label className="update-label">Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={updatedPost.title}
-            onChange={handleInputChange}
-            className="update-input"
-          />
-        </div>
-        <div>
-          <label className="update-label">Content:</label>
-          <textarea
-            name="content"
-            value={updatedPost.content}
-            onChange={handleInputChange}
-            rows="6"
-            className="update-textarea"
-          />
-        </div>
-        <div>
-          <button type="button" onClick={handleSubmit} className="update-button">
-            Update
-          </button>
-        </div>
-      </form>
+    <div className="container mx-auto p-4">
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h2 className="text-3xl font-semibold text-themeBlue mb-4">Update Post</h2>
+        <form className="update-form">
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-themeBlue text-lg font-semibold mb-2">
+              Title:
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={updatedPost.title}
+              onChange={handleInputChange}
+              className="form-input w-full p-2 border border-themeLightGray rounded-md"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="content" className="block text-themeBlue text-lg font-semibold mb-2">
+              Content:
+            </label>
+            <textarea
+              name="content"
+              value={updatedPost.content}
+              onChange={handleInputChange}
+              rows="6"
+              className="form-textarea w-full p-2 border border-themeLightGray rounded-md"
+            />
+          </div>
+          <div>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              className="btn update-button bg-themePurple hover:bg-themeBlue text-white py-2 px-4 rounded-md transition duration-300"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
