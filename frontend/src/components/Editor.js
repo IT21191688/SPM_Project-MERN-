@@ -340,6 +340,8 @@ function Editor(props) {
             setKeywords('');
             //////////////////////////////////////////////////////////////////////////////////////////
 
+            CodeMirrorEditor.formatCode();
+
 
             //hello
         }
