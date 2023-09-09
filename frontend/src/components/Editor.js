@@ -6,7 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
-    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern,summation,findtextSize,
+    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize,
     createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs
 } from '../datamodules/DataCollections';
 
@@ -63,8 +63,8 @@ function Editor(props) {
             'call function': callFunctionJs,
             'create star pattern': createStarPatternCommand,
             'create square star pattern': createStarPatternCommand,
-            'summation':createsummation,
-            'find text size':findAndDisplayTextSize,
+            'summation': createsummation,
+            'find text size': findAndDisplayTextSize,
 
         },
         'Java': {
@@ -139,37 +139,37 @@ function Editor(props) {
     }
 
     function createsummation() {
-        
+
         const input = prompt('Enter two numbers separated by a space:');
-      
+
         // Split the input into an array using a space as the delimiter
         const inputArray = input.split(' ');
-      
+
         // Check if there are exactly two elements in the array
         if (inputArray.length === 2) {
-          const num1 = parseInt(inputArray[0]);
-          const num2 = parseInt(inputArray[1]);
-      
-          if (!isNaN(num1) && !isNaN(num2)) {
-            // Both inputs are valid integers
-            console.log('First number:', num1);
-            console.log('Second number:', num2);
-      
-            // Perform summation
-            const result = summation(num1,num2);
-            return result; // Return the result
-          } else {
-            console.log('Invalid input. Please enter two valid numbers separated by a space.');
-          }
-        } else {
-          console.log('Invalid input format. Please enter two numbers separated by a space.');
-        }
-        
-      }
+            const num1 = parseInt(inputArray[0]);
+            const num2 = parseInt(inputArray[1]);
 
-      function findAndDisplayTextSize() {
+            if (!isNaN(num1) && !isNaN(num2)) {
+                // Both inputs are valid integers
+                console.log('First number:', num1);
+                console.log('Second number:', num2);
+
+                // Perform summation
+                const result = summation(num1, num2);
+                return result; // Return the result
+            } else {
+                console.log('Invalid input. Please enter two valid numbers separated by a space.');
+            }
+        } else {
+            console.log('Invalid input format. Please enter two numbers separated by a space.');
+        }
+
+    }
+
+    function findAndDisplayTextSize() {
         const text = prompt('Enter the text:');
-        
+
         // Ensure text is not empty or null before passing it to the findtextSize function
         if (text !== null && text.trim() !== '') {
             const size = findtextSize(text);
@@ -178,7 +178,7 @@ function Editor(props) {
             console.log('Invalid input. Please enter a non-empty text.');
         }
     }
-      
+
 
     function processTranscript(transcript) {
         const normalizedTranscript = transcript.toLowerCase();
@@ -350,83 +350,119 @@ function Editor(props) {
 
     return (
 
-        <div className='container mt-5'>
-            <div className='row'>
-                <div className='col-md-4'>
-                    <Guidence />
-                </div>
 
-                <div className='col-md-5' style={{ padding: '5px' }}>
-                    <div className={`${Style.codeeditorwrapper}`}>
-                        <div className={Style.filename}>
-                            My Code Editor
-                            <span
-                                onClick={() => CodeMirrorEditor.runCode()}
-                                title='Click here to run this file'
-                                className={`float-right cursor-pointer ${loading ? Style.loading : ''}`}
-                            >
-                                {loading && <i className={`fa fa-circle-o-notch fa-spin fa-3x ${Style.loadingIcon}`}></i>}
-                                {!loading && <i className={`fa fa-caret-right ${Style.caretIcon}`} />}
-                            </span>
-                        </div>
-                        <div id='code-editor' className={`${Style.CodeMirror}`} style={{ textAlign: 'left' }} onChange={setValue}></div>
+
+        <div className="mt-5">
+            <div className="">
+                <div className="row">
+                    <div className="col-md-3">
+                        <Guidence />
                     </div>
-                    <div className={`output ${loading ? Style.loading : ''} p-3 border rounded`}>
-                        <div className='d-flex align-items-center'>
-                            <i className={`fa fa-angle-right ${Style.angleIcon} mr-2`}></i>
-                            {loading ? (
-                                <span className={`fa-3x ${Style.loadingIcon}`}>
-                                    <i className='fa fa-circle-o-notch fa-spin'></i>
+
+                    <div className="col-md-6">
+                        <div className="bg-gray-100 rounded-lg shadow">
+                            <div className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">
+                                My Code Editor
+                                <span
+                                    onClick={() => CodeMirrorEditor.runCode()}
+                                    title="Click here to run this file"
+                                    className={`float-right cursor-pointer ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+                                >
+                                    {loading ? (
+                                        <i className="animate-spin fa fa-circle-o-notch fa-3x"></i>
+                                    ) : (
+                                        <i className="fa fa-caret-right"></i>
+                                    )}
                                 </span>
-                            ) : (
-                                <pre className='m-0'>{result === '' ? 'Empty output' : result}</pre>
-                            )}
+                            </div>
+                            <div id="code-editor" className="CodeMirror text-left" onChange={setValue}></div>
                         </div>
-                    </div>
-                </div>
-
-                <div className="col-md-3" style={{ paddingRight: '5px' }}>
-                    <div className="bg-white rounded p-4 shadow">
-                        <div className="mb-3">
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select Language: {language}
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Javascript')}>Javascript</a></li>
-                                    <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Java')}>Java</a></li>
-                                </ul>
+                        <div className={`output ${loading ? "loading" : ""} p-3 border rounded mt-4`}>
+                            <div className="flex items-center">
+                                <i className={`fa fa-angle-right ${loading ? "animate-spin" : ""} mr-2`}></i>
+                                {loading ? (
+                                    <span className="fa-3x">
+                                        <i className="fa fa-circle-o-notch fa-spin"></i>
+                                    </span>
+                                ) : (
+                                    <pre className="m-0">{result === "" ? "Empty output" : result}</pre>
+                                )}
                             </div>
                         </div>
-                        <h2 className="mb-3">Say Your Code</h2>
-                        <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
-                            {transcript}
-                        </div>
-                        <hr />
-                        <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
-                            {keywords}
-                        </div>
-                        <div className="mb-3">
-                            <button className="btn btn-primary me-2" onClick={applyGeneratedCode}>
-                                Apply Code
-                            </button>
-                            <button className="btn btn-secondary" onClick={rejectCode}>
-                                Clear
-                            </button>
-                        </div>
-                        <div className="btn-style">
-                            <button className={`btn ${isCopied ? 'btn-success' : 'btn-primary'} me-2`} onClick={setCodeEditor}>
-                                {isCopied ? 'Copied!' : 'Copy Clipboard'}
-                            </button>
-                            <button className={`btn ${isListening ? 'btn-danger' : 'btn-success'}`} onClick={isListening ? stopListening : startListening}>
-                                {isListening ? 'Stop Listening' : 'Start Listening'}
-                            </button>
+                    </div>
+
+                    <div className="col-md-3">
+                        <div className="bg-white p-4 rounded shadow">
+                            <div className="mb-3 text-center">
+                                <div className="dropdown d-inline-block">
+                                    <button className="btn btn-secondary dropdown-toggle bg-slate-400" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Select Language: {language}
+                                    </button>
+                                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Javascript')}>Javascript</a></li>
+                                        <li><a className="dropdown-item" href="#" onClick={() => setlanguage('Java')}>Java</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h2 className="mb-3">Say Your Code</h2>
+                            <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
+                                {transcript}
+                            </div>
+                            <hr />
+                            <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
+                                {keywords}
+                            </div>
+
+
+                            <div>
+                                <div className="mb-4 text-center">
+                                    <div className="flex justify-center space-x-4">
+                                        <button
+                                            className="px-4 py-2 text-white bg-purple-600 hover:bg-purple-700 rounded-full"
+                                            onClick={applyGeneratedCode}
+                                        >
+                                            Apply Code
+                                        </button>
+                                        <button
+                                            className="px-4 py-2 text-white bg-gray-600 hover:bg-gray-700 rounded-full"
+                                            onClick={rejectCode}
+                                        >
+                                            Clear
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="btn-style text-center">
+                                    <div className="flex justify-center space-x-4">
+                                        <button
+                                            className={`px-4 py-2 text-white rounded-full ${isCopied ? 'bg-green-500 hover:bg-green-600' : 'bg-purple-600 hover:bg-purple-700'}`}
+                                            onClick={setCodeEditor}
+                                        >
+                                            {isCopied ? 'Copied!' : 'Copy Clipboard'}
+                                        </button>
+                                        <button
+                                            className={`px-4 py-2 text-white rounded-full ${isListening ? 'bg-red-600 hover:bg-red-700' : 'bg-green-500 hover:bg-green-600'}`}
+                                            onClick={isListening ? stopListening : startListening}
+                                        >
+                                            {isListening ? 'Stop Listening' : 'Start Listening'}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
                         </div>
                     </div>
-                </div>
 
+
+
+                </div>
             </div>
         </div>
+
+
 
     );
 }

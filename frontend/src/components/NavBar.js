@@ -96,14 +96,14 @@ export default function NavBarUser() {
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/getTutorialAdmin'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/getTutorialAdmin'}>
                                                         View Tutes
-                                                    </button>
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/createTutorial'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/createTutorial'}>
                                                         Create Tutes
-                                                    </button>
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -188,9 +188,9 @@ export default function NavBarUser() {
                                                 </li>
 
                                                 <li>
-                                                    <button className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
+                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
                                                         View Tutes
-                                                    </button>
+                                                    </a>
                                                 </li>
 
                                             </ul>
