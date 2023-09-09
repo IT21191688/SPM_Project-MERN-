@@ -352,7 +352,7 @@ function Editor(props) {
 
 
 
-        <div className="mt-5">
+        <div className="mt-5" style={{ overflowX: 'hidden' }}>
             <div className="">
                 <div className="row">
                     <div className="col-md-3">
@@ -361,7 +361,7 @@ function Editor(props) {
 
                     <div className="col-md-6">
                         <div className="bg-gray-100 rounded-lg shadow">
-                            <div className="text-lg font-bold px-4 py-2 bg-blue-500 text-white">
+                            <div className="text-lg font-bold px-4 py-2 bg-blue-900 text-white">
                                 My Code Editor
                                 <span
                                     onClick={() => CodeMirrorEditor.runCode()}
@@ -392,7 +392,7 @@ function Editor(props) {
                     </div>
 
                     <div className="col-md-3">
-                        <div className="bg-white p-4 rounded shadow">
+                        <div className="bg-white p-4 rounded shadow" style={{ height: '650px' }}>
                             <div className="mb-3 text-center">
                                 <div className="dropdown d-inline-block">
                                     <button className="btn btn-secondary dropdown-toggle bg-slate-400" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -404,12 +404,13 @@ function Editor(props) {
                                     </ul>
                                 </div>
                             </div>
-                            <h1 className="mb-3"><b>Say Your Code</b></h1>
-                            <div className="main-content mb-3 p-2 border" style={{ height: '50px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
+                            <br></br>
+                            <h1 className="mb-3"><b>Say Your Commands</b></h1>
+                            <div className="main-content mb-3 p-2 border" style={{ height: '60px', cursor: 'pointer' }} onClick={() => setTextToCopy(transcript)}>
                                 {transcript}
                             </div>
                             <hr />
-                            <div className="main-content mb-3 p-2 border" style={{ height: '200px', overflowY: 'auto' }}>
+                            <div className="main-content mb-3 p-2 border" style={{ height: '250px', overflowY: 'auto' }}>
                                 {keywords}
                             </div>
 
