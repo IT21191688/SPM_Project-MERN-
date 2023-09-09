@@ -9,9 +9,8 @@ function UpdateTutorial() {
   const [tutorialData, setTutorialData] = useState({
     title: '',
     description: '',
-    courseid: '', // Initialize courseid as an empty string
-  });
-  const [courses, setCourses] = useState([]);
+  }); // Remove the courseid field
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -21,11 +20,9 @@ function UpdateTutorial() {
         setTutorialData({
           title: tutorial.title,
           description: tutorial.description,
-          courseid: tutorial.courseid,
         });
 
-        const coursesResponse = await axios.get('http://localhost:8080/courses/getCourses');
-        setCourses(coursesResponse.data);
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -82,26 +79,6 @@ function UpdateTutorial() {
             onChange={handleChange}
             className="border border-blue-500 rounded-lg py-2 px-3 w-full h-32"
           />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="courseid" className="block font-semibold text-blue-900 mb-2">
-            Select a Course:
-          </label>
-          <select
-            id="courseid"
-            name="courseid"
-            value={tutorialData.courseid || ''} // Initialize with an empty string
-            onChange={handleChange}
-            className="border border-blue-500 rounded-lg py-2 px-3 w-full"
-            required
-          >
-            <option value="">Select a Course</option>
-            {courses.map((course) => (
-              <option key={course._id} value={course._id}>
-                {course.coursename}
-              </option>
-            ))}
-          </select>
         </div>
         <div>
           <button

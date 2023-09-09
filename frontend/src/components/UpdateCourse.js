@@ -74,14 +74,11 @@ function UpdateCourse() {
           />
         </div>
         <div>
-          <button
+        <button
             type="submit"
-            className={`bg-9400FF text-white py-2 px-4 rounded-lg hover:bg-AED2FF transition duration-300 ${
-              isUpdating ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
-            disabled={isUpdating}
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition duration-300"
           >
-            {isUpdating ? 'Updating...' : 'Update Course'}
+            Update Courses
           </button>
         </div>
       </form>
