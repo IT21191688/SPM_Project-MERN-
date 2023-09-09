@@ -11,6 +11,9 @@ function truncateDescription(description, maxLength) {
 
 function ViewCoursesAdmin() {
   const [courses, setCourses] = useState([]);
+  const [id, setId] = useState('');
+  const [name, setName] = useState('');
+
   const navigate = useNavigate(); // Use useNavigate hook to navigate
 
   useEffect(() => {
@@ -19,6 +22,7 @@ function ViewCoursesAdmin() {
       try {
         const response = await axios.get('http://localhost:8080/courses/getCourses'); // Adjust the endpoint based on your API route
         setCourses(response.data);
+
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
@@ -52,11 +56,19 @@ function ViewCoursesAdmin() {
     }
   };
 
+  const AddTute = async (courseId, courseName) => {
+    navigate(`/createTutorial/${courseId}/${courseName}`);
+  }
+
+  const ViewTute = async (courseId, courseName) => {
+    navigate(`/getTutorialAdmin/${courseId}/${courseName}`);
+  }
+
   return (
     <div className="bg-blue-200 min-h-screen p-8">
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold text-blue-700 mb-6">Courses List</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {courses.map((course) => (
             <div key={course._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
@@ -76,17 +88,34 @@ function ViewCoursesAdmin() {
                   )}
                 </p>
                 <div className="mt-4">
+                  
                   <Link
                     to={`/courses/update/${course._id}`}
                     className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition duration-300 inline-block mr-2"
                   >
                     Update
                   </Link>
+
                   <button
                     onClick={() => handleDeleteCourse(course._id)}
-                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block"
+                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block mr-2"
                   >
                     Delete
+                  </button>
+
+                  <button
+                    onClick={() => AddTute(course._id, course.coursename)}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 inline-block mr-2"
+                  >
+                    Add Tute
+                  </button>
+                  
+                  <button
+                  
+                    onClick={() => ViewTute(course._id, course.coursename)}
+                    className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 inline-block mr-2"
+                  >
+                    View Tute
                   </button>
                 </div>
               </div>

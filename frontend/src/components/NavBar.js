@@ -87,22 +87,12 @@ export default function NavBarUser() {
                                             <ul className="bg-white text-black border border-gray-200 rounded-lg">
                                                 <li>
                                                     <a className="block px-4 py-2 hover:bg-gray-200" href={'/getCourseAdmin'}>
-                                                        View Course
+                                                        View Course & Tutes
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a className="block px-4 py-2 hover:bg-gray-200" href={'/createCourse'}>
-                                                        Create Course
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/getTutorialAdmin'}>
-                                                        View Tutes
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/createTutorial'}>
-                                                        Create Tutes
+                                                        Create Course & Tutes
                                                     </a>
                                                 </li>
                                             </ul>
@@ -162,49 +152,18 @@ export default function NavBarUser() {
                                         </a>
                                     </li>
 
-
-                                    <li
-                                        className="nav-item relative group"
-                                        onMouseEnter={toggleDropdownC}
-                                        onMouseLeave={closeDropdownC}
-                                    >
-                                        <button className="nav-link focus:outline-none">
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/viewCourses">
                                             <FontAwesomeIcon icon={faGraduationCap} /> Courese & Tutes
-                                            <FontAwesomeIcon
-                                                icon={faChevronDown}
-                                                className={`ml-1 fas fa-chevron-down ${isDropdownOpenC ? 'rotate-180' : ''}`}
-                                            />
-                                        </button>
-                                        <div
-                                            className={`${isDropdownOpenC ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                                                } origin-top-right absolute right-0 mt-2 transition-transform transform-gpu duration-200 ease-in-out transform ${isDropdownOpenC ? 'scale-y-100' : 'scale-y-0'
-                                                }`}
-                                        >
-                                            <ul className="bg-white text-black border border-gray-200 rounded-lg">
-                                                <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewCourses'}>
-                                                        View Course
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a className="block px-4 py-2 hover:bg-gray-200" href={'/viewTutorials'}>
-                                                        View Tutes
-                                                    </a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
+                                        </a>
                                     </li>
-
-
-
 
                                     <li className="nav-item">
                                         <a className="nav-link" href="/allpost">
                                             <FontAwesomeIcon icon={faFileCode} /> Review Code
                                         </a>
                                     </li>
+
                                     <li
                                         className="nav-item relative group"
                                         onMouseEnter={toggleDropdown}

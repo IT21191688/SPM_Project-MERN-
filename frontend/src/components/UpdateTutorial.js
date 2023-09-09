@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 function UpdateTutorial() {
-  const { tutorialId } = useParams();
+  const { tutorialId, courseId, courseName } = useParams();
   const navigate = useNavigate();
 
   console.log("TID : ", tutorialId);
@@ -43,7 +43,7 @@ function UpdateTutorial() {
 
     try {
       await axios.put(`http://localhost:8080/tutorials/updateT/${tutorialId}`, tutorialData);
-      navigate(`/getTutorialAdmin/`);
+      navigate(`/getTutorialAdmin/${courseId}/${courseName}`);
     } catch (error) {
       console.error('Error updating tutorial:', error);
     }
