@@ -3,19 +3,18 @@ import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 
 function UpdateTutorial() {
-  const { id } = useParams();
+  const { tutorialId } = useParams();
   const navigate = useNavigate();
 
-  const [tutorialData, setTutorialData] = useState({
-    title: '',
-    description: '',
-  }); // Remove the courseid field
+  console.log("TID : ", tutorialId);
+
+  const [tutorialData, setTutorialData] = useState({}); // Remove the courseid field
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const tutorialResponse = await axios.get(`/tutorials/getT/${id}`);
+        const tutorialResponse = await axios.post(`http://localhost:8080/tutorials/getT/${tutorialId}`);
         const tutorial = tutorialResponse.data;
         setTutorialData({
           title: tutorial.title,
@@ -29,7 +28,7 @@ function UpdateTutorial() {
     }
 
     fetchData();
-  }, [id]);
+  }, [tutorialId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,8 +42,8 @@ function UpdateTutorial() {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:8080/tutorials/updateT/${id}`, tutorialData);
-      navigate(`/tutorials/${id}`);
+      await axios.put(`http://localhost:8080/tutorials/updateT/${tutorialId}`, tutorialData);
+      navigate(`/getTutorialAdmin/`);
     } catch (error) {
       console.error('Error updating tutorial:', error);
     }
@@ -87,7 +86,7 @@ function UpdateTutorial() {
           >
             Update Tutorial
           </button>
-          <Link to={`/tutorials/${id}`} className="ml-4 text-blue-500 hover:underline">
+          <Link to={`/tutorials/${tutorialId}`} className="ml-4 text-blue-500 hover:underline">
             Cancel
           </Link>
         </div>
