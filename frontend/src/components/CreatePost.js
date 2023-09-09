@@ -2,15 +2,43 @@ import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios for making API requests
 import { useNavigate } from 'react-router-dom';
 import '../css/createPost.css'; // Import custom CSS for styling
-
-
-
+import { useEffect } from 'react';
+import jwt from 'jwt-decode'
 
 function CreatePost() {
 
-
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [name, setName] = useState('');
+
+
+  useEffect(() => {
+
+    const fetchProfileDetails = async () => {
+      const token = localStorage.getItem('token')
+      const decoded = jwt(token);
+      const userId = decoded.userId;
+
+      try {
+
+
+        const response = await axios.post("http://localhost:8080/auth/profile", {userId} );
+
+        setName(response.data.firstname + ' ' + response.data.lastname);
+
+      } catch (error) {
+        alert('Data Load Unsuccessfull' + error);
+        console.log(error);
+      }
+    };
+
+    fetchProfileDetails();
+    
+    
+
+  }, [])
+
+  console.log(name);
 
 
   const navigate = useNavigate();
@@ -30,6 +58,7 @@ function CreatePost() {
       const response = await axios.post('http://localhost:8080/api/posts/posts', {
         title,
         content,
+        name,
       });
 
       // Handle a successful response (e.g., show a success message)

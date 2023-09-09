@@ -70,6 +70,7 @@ function AllPost() {
                     className="text-themeBlue hover:underline"
                   >
                     {post.title}
+
                   </a>
                 </h5>
                 <p className="text-gray-700">
@@ -94,6 +95,11 @@ function AllPost() {
                     post.content
                   )}
                 </p>
+                <br /><br />
+                <div className="blog-author">
+                  Author: {post.name}
+                </div>
+
               </div>
             </div>
           ))}

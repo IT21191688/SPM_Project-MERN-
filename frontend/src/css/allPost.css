@@ -75,4 +75,13 @@
   .show-more-btn:hover {
     text-decoration: underline;
   }
+
+  /* Your CSS stylesheet */
+.blog-author {
+  font-weight: bold;
+  font-size: 0.8rem;
+  color: #b155f3;
+  opacity: 0.6;
+}
+
   
