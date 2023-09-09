@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../css/allPost.css'; // Import custom CSS for styling
-
+import '../css/allPost.css'; // Import the separate CSS file for SelectedPost
 
 function AllPost() {
   const [posts, setPosts] = useState([]);
-
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/posts/posts')
+    axios
+      .get('http://localhost:8080/api/posts/posts')
       .then((response) => {
         setPosts(response.data);
       })
@@ -31,31 +31,48 @@ function AllPost() {
 
     // Toggle the "Read More" button text
     const readMoreBtn = document.getElementById(`read-more-btn-${postId}`);
-    if (readMoreBtn.innerHTML === 'Read More') {
-      readMoreBtn.innerHTML = 'Read Less';
+    if (readMoreBtn.innerHTML === '...Read More') {
+      readMoreBtn.innerHTML = '...Read Less';
     } else {
-      readMoreBtn.innerHTML = 'Read More';
+      readMoreBtn.innerHTML = '...Read More';
     }
   };
 
+  // Function to filter posts based on search query
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="container all-post">
-      <h2 className="mt-5 mb-4">Explore the Reviews</h2>
-      <div className="row">
-        {posts.map((post) => (
-          <div className="col-md-4" key={post._id}>
-            <div className="card mb-4">
-              <div className="card-body">
-                <h5 className="card-title">
+    <div className="bg-themeLightGray py-10">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-semibold text-themeBlue mt-5 mb-4">Explore the Reviews</h2>
+
+        {/* Search input */}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Search Posts"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="border border-themeLightGray rounded-md p-2 w-full"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredPosts.map((post) => (
+            <div key={post._id}>
+              <div className="bg-white p-4 rounded-lg shadow-md">
+                <h5 className="text-xl font-semibold mb-2">
                   <a
                     href="#"
                     onClick={() => navigateToSelectedPost(post._id)}
-                    className="post-title-link"
+                    className="text-themeBlue hover:underline"
                   >
                     {post.title}
                   </a>
                 </h5>
-                <p className="card-text">
+                <p className="text-gray-700">
                   {post.content.length > 200 ? (
                     <>
                       {post.content.slice(0, 200)}
@@ -67,7 +84,7 @@ function AllPost() {
                       </span>
                       <span
                         id={`read-more-btn-${post._id}`}
-                        className="show-more-btn"
+                        className="text-themePurple cursor-pointer hover:text-themeBlue"
                         onClick={() => handleReadMoreClick(post._id)}
                       >
                         ...Read More
@@ -79,18 +96,18 @@ function AllPost() {
                 </p>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-      <div className="text-center">
-        <button
-          className="btn btn-primary create-post-btn"
-          onClick={() => {
-            navigate(`/createpost/`);
-          }}
-        >
-          Create Post
-        </button>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <button
+            className="bg-themePurple hover:bg-themeBlue text-white py-2 px-4 rounded-md transition duration-300"
+            onClick={() => {
+              navigate(`/createpost/`);
+            }}
+          >
+            Create Post
+          </button>
+        </div>
       </div>
     </div>
   );

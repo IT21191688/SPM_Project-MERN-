@@ -45,8 +45,7 @@
   
   .comment {
     margin-bottom: 20px;
-    border: 1px solid black;
-    padding: 5px 5px 25px 25px;
+    padding: 15px 5px 25px 25px;
     border-radius: 30px;
     background-color: #AED2FF;
   }

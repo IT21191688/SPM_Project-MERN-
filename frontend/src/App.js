@@ -21,6 +21,7 @@ import AllPost from './components/AllPost';
 import CreatePost from './components/CreatePost';
 import SelectedPost from './components/SelectedPost';
 import UpdatePost from './components/UpdatePost';
+import About from './components/About';
 
 import Cookies from 'js-cookie';
 
@@ -84,6 +85,7 @@ function App() {
                 <Route path="/post/:postId" element={<SelectedPost />} />
                 <Route path="/editpost/:postId" element={<UpdatePost />} />
                 <Route path="/createpost" element={<CreatePost />} />
+                <Route path="/about" element={<About />} />
 
               </Routes>
 
