@@ -13,6 +13,7 @@ function CreateTutorial() {
   });
 
   const [pdfFile, setPdfFile] = useState(null); // Store the selected PDF file
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,6 +31,23 @@ function CreateTutorial() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate inputs
+    const validationErrors = {};
+    if (!tutorialData.title.trim()) {
+      validationErrors.title = 'Title is required';
+    }
+    if (!tutorialData.description.trim()) {
+      validationErrors.description = 'Description is required';
+    }
+    if (!pdfFile) {
+      validationErrors.pdf = 'PDF file is required';
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
 
     try {
       // Create a FormData object to send both the tutorialData and the PDF file
@@ -66,9 +84,12 @@ function CreateTutorial() {
             name="title"
             value={tutorialData.title}
             onChange={handleChange}
-            className="border border-primary rounded-lg py-2 px-3 w-full"
-            required
+            className={`border border-primary rounded-lg py-2 px-3 w-full ${errors.title ? 'border-red-500' : ''
+              }`}
           />
+          {errors.title && (
+            <p className="text-red-500 text-xs mt-1">{errors.title}</p>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="description" className="block font-semibold text-primary mb-2">
@@ -79,8 +100,12 @@ function CreateTutorial() {
             name="description"
             value={tutorialData.description}
             onChange={handleChange}
-            className="border border-primary rounded-lg py-2 px-3 w-full h-32"
+            className={`border border-primary rounded-lg py-2 px-3 w-full h-32 ${errors.description ? 'border-red-500' : ''
+              }`}
           />
+          {errors.description && (
+            <p className="text-red-500 text-xs mt-1">{errors.description}</p>
+          )}
         </div>
         <div className="mb-4">
           <label htmlFor="pdf" className="block font-semibold text-primary mb-2">
@@ -92,9 +117,12 @@ function CreateTutorial() {
             name="pdf"
             onChange={handleFileChange}
             accept=".pdf" // Specify that only PDF files are allowed
-            className="border border-primary rounded-lg py-2 px-3 w-full"
-            required
+            className={`border border-primary rounded-lg py-2 px-3 w-full ${errors.pdf ? 'border-red-500' : ''
+              }`}
           />
+          {errors.pdf && (
+            <p className="text-red-500 text-xs mt-1">{errors.pdf}</p>
+          )}
         </div>
         <div>
           <button
