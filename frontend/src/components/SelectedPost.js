@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../css/selectedPost.css'; // Import the separate CSS file for SelectedPost
+import '../css/selectedPost.css';
 import { useParams } from 'react-router-dom';
 import jwt from 'jwt-decode'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -150,8 +150,8 @@ function SelectedPost(props) {
                         // After deleting all comments, delete the post itself
                         axios.delete(`http://localhost:8080/api/posts/posts/${postId}`)
                             .then(() => {
-                                // Redirect to the list of all posts or perform any other action
-                                props.history.push('/'); // You can adjust the redirection URL as needed
+                                navigate('/allpost');
+
                             })
                             .catch((error) => {
                                 console.error('Error deleting post:', error);
@@ -160,12 +160,11 @@ function SelectedPost(props) {
                     .catch((error) => {
                         console.error('Error deleting comments:', error);
                     });
-                navigate('/allpost/');
-
             })
             .catch((error) => {
                 console.error('Error fetching comments:', error);
             });
+
     };
 
     function handleUpdatePost() {
@@ -202,7 +201,7 @@ function SelectedPost(props) {
         setEditComment({ id: null, text: '' });
     };
 
-    
+
 
     return (
         <div className="container mx-auto p-4">
