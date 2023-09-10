@@ -18,6 +18,9 @@ const TutorialSchema = new Schema({
     ref: 'Course',
     required: true,
   },
+  pdf: {
+    type: String, // You can store the path or URL to the uploaded PDF file
+  },
 
 }
 )

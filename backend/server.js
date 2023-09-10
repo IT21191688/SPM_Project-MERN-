@@ -16,6 +16,8 @@ const MongoStore = require('connect-mongo');
 const { config } = require("dotenv");
 const postRoutes = require('./routes/postRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const path = require('path');
+
 
 //import .env
 require("dotenv").config();
@@ -73,6 +75,7 @@ app.use('/tutorials', tutorialRouter);
 
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
+
 
 
 
