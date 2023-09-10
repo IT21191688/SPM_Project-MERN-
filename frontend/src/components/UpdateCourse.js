@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function UpdateCourse() {
   const { courseId } = useParams();
+  const navigate = useNavigate();
   const [courseData, setCourseData] = useState({});
   const [isUpdating, setIsUpdating] = useState(false); // State to manage the update process
 
@@ -36,6 +37,8 @@ function UpdateCourse() {
     setIsUpdating(true); // Set updating state to true while the request is in progress
     try {
       await axios.put(`http://localhost:8080/courses/update/${courseId}`, courseData);
+      navigate(`/getCourseAdmin/`)
+
     } catch (error) {
       console.error('Error updating course:', error);
     } finally {
