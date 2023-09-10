@@ -6,7 +6,7 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
-    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize,createBreakStatement,
+    createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize, createBreakStatement,
     createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs
 } from '../datamodules/DataCollections';
 
@@ -54,19 +54,18 @@ function Editor(props) {
             'create class': createClassJs,
             'comment': commentJs,
             'create object': objectJs,
-            'initialize': initializeJs,
+            'initialise': initializeJs,
+            'print variable': printVaribleJs,
             'print': printJs,
             'create loop': createForLoopJs,
             'create if else': createIfElseJs,
             'execute': executeCode,
-            'print varible': printVaribleJs,
             'call function': callFunctionJs,
             'create star pattern': createStarPatternCommand,
             'create square star pattern': createStarPatternCommand,
             'summation': createsummation,
             'find text size': findAndDisplayTextSize,
             'create break statement': createBreakStatement,
-
         },
         'Java': {
             'create function': createJavaFunction,
@@ -222,7 +221,7 @@ function Editor(props) {
                 if (argument) {
                     let keyword = '';
 
-                    if (command === 'create loop' || command === 'create if else' ) {
+                    if (command === 'create loop' || command === 'create if else') {
                         const condition = extractConditionFromArgument(argument);
                         keyword = selectedLanguageHandlers[command](condition);
                     } else {
