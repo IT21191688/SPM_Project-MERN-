@@ -27,18 +27,6 @@ export default function AdminHome() {
                                 <p>Create new courses</p>
                             </a>
                         </div>
-                        <div className="course-tutes-option">
-                            <a href="/getTutorialAdmin" className="admin-option-link">
-                                <h3>View Tutes</h3>
-                                <p>View and manage tutorials</p>
-                            </a>
-                        </div>
-                        <div className="course-tutes-option">
-                            <a href="/createTutorial" className="admin-option-link">
-                                <h3>Create Tutes</h3>
-                                <p>Create new tutorials</p>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

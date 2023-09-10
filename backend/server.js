@@ -76,6 +76,8 @@ app.use('/tutorials', tutorialRouter);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 
+app.use('/TuteFiles', express.static(__dirname + '/TuteFiles'));
+
 
 
 
