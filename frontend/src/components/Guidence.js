@@ -64,9 +64,9 @@ export default function Guidence() {
                     <li className="mb-1"><strong>"create if else statement with condition x greater than 5":</strong>  Generates an if-else statement with the specified condition.</li>
                     <li className="mb-1"><strong>"create break statement":</strong>  Generates an break statement with the specified condition.</li>
                     <li className="mb-1"><strong>"print variableName":</strong>  Generates a console log statement to print the specified variable.</li>
-                    <li className="mb-1"><strong> "create constant":</strong> Generates a constant declaration.</li>
-                    <li className="mb-1"><strong>"create object with attributes name and age":</strong>  Generates an object declaration with attributes.</li>
-                    <li className="mb-1"><strong>"initialize variableName with Number":</strong> Generates variable initialization with a specified type.</li>
+                    <li className="mb-1"><strong>"constant ConstantName":</strong> Generates a constant declaration.</li>
+                    <li className="mb-1"><strong>"create object hello":</strong>  Generates an object declaration with attributes.</li>
+                    <li className="mb-1"><strong>"initialize Number":</strong> Generates variable initialization with a specified type.</li>
                 </ul>
                 <h4 className="text-lg mb-4">Example Voice Commands:</h4>
                 {/* ... Other content for Page 3 */}
@@ -81,7 +81,7 @@ export default function Guidence() {
                     <li className="mb-1"><strong>"create class ClassName":</strong>  Generates a class definition.</li>
                     <li className="mb-1"><strong>"create function myFunction": </strong> Generates a function template.</li>
                     <li className="mb-1"><strong>"declare variable myVariable":</strong>  Generates a variable declaration.</li>
-                    <li className="mb-1"><strong>"print var variableName":</strong> Displays the value of a variable.</li>
+                    <li className="mb-1"><strong>"print variable varibleName":</strong> Displays the value of a variable.</li>
                 </ul>
                 <h4 className="text-lg mb-4">Example Voice Commands:</h4>
                 {/* ... Other content for Page 3 */}
