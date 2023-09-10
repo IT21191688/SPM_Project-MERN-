@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // You may need to install axios if not already done
 
+
 function CreateCourse() {
+
+  const navigate = useNavigate();
+
   const [courseData, setCourseData] = useState({
     courseid: '',
     coursename: '',
@@ -30,7 +35,8 @@ function CreateCourse() {
         coursename: '',
         description: '',
       });
-      alert("Done!");
+      navigate('/getCourseAdmin/')
+
 
     } catch (error) {
       // Handle errors, e.g., display an error message

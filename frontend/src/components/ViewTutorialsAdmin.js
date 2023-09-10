@@ -98,11 +98,16 @@ function ViewTutorialsAdmin() {
                 </p>
                 <div className="mt-4">
 
-                  <a href={`http://localhost:8080/${tutorial.pdf}`}
+                  <button
+                    onClick={() => {
+                      window.open(`http://localhost:8080/${tutorial.pdf}`, '_blank');
+                    }}
                     className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
-                    download="test"
-                    target="_blank"
-                    rel="noreferrer" type="button" class="btn btn-success">View Tute</a>
+                    type="button"
+                  >
+                    View Tute
+                  </button>
+
 
                   <button
                     onClick={() => handleUpdateTutorial(tutorial._id)}
