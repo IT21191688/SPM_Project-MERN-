@@ -1,17 +1,109 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import '../css/home.css'; // Import your custom CSS file
+import { useState, useEffect } from "react";
+
 
 const Home = () => {
+  const [sentences, setSentences] = useState([
+    "Your Gateway to the World of Coding",
+    "Unlock the Power of Code",
+    "Learn, Code, Collaborate",
+  ]);
+
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [typedText, setTypedText] = useState("");
+  const [showCursor, setShowCursor] = useState(true); // To toggle the cursor
+
+  const fullText = "Welcome to .CODES"; // The complete text to be typed
+  const typingSpeed = 100; // Typing speed (milliseconds per character)
+  const cursorBlinkSpeed = 50; // Cursor blink speed (milliseconds)
+
+  const changeSentence = () => {
+    const newIndex =
+      currentSentenceIndex === sentences.length - 1 ? 0 : currentSentenceIndex + 1;
+    setCurrentSentenceIndex(newIndex);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(changeSentence, 5000); // Change sentence every 5 seconds
+
+    return () => clearInterval(interval); // Cleanup on component unmount
+  }, [currentSentenceIndex]);
+
+  useEffect(() => {
+    let currentIndex = 0;
+    let isRepeating = false;
+
+    const startTyping = () => {
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= fullText.length) {
+          setTypedText(fullText.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+          isRepeating = true;
+          setTimeout(() => {
+            currentIndex = 0;
+            setTypedText("");
+            isRepeating = false;
+          },); // Wait for 2 seconds and then reset
+        }
+      }, typingSpeed);
+
+      const cursorInterval = setInterval(() => {
+        setShowCursor((prev) => !prev); // Toggle the cursor state
+      }, cursorBlinkSpeed);
+
+      return () => {
+        clearInterval(typingInterval);
+        clearInterval(cursorInterval);
+      };
+    };
+
+    startTyping(); // Start typing when the component mounts
+
+    const repeatTyping = () => {
+      if (!isRepeating) {
+        startTyping();
+      }
+    };
+
+    const repeatInterval = setInterval(repeatTyping, 3000);
+
+    return () => {
+      clearInterval(repeatInterval);
+    };
+  }, []);
+
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero" style={{ backgroundColor: "#27005D" }}>
-        <div className="container mx-auto text-center text-white py-20">
-          <h1 className="text-4xl font-bold mb-4">Welcome to .CODES</h1>
-          <p className="text-lg mb-8">
-            Your Gateway to the World of Coding
-          </p>
+      <section
+        className="hero"
+        style={{
+          backgroundColor: "#27005D",
+          height: "500px", // Fixed height
+          overflow: "hidden",
+          position: "relative", // Add this for absolute positioning
+        }}
+      >
+        <div
+          className="container mx-auto text-center text-white py-20"
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)", // Center the content
+          }}
+        >
+          <h1 className="text-4xl font-bold mb-4">
+            {typedText}
+            <span className={showCursor ? "cursor" : ""}></span>
+          </h1>
+          
+          <br />
+          <p className="text-lg mb-4">{sentences[currentSentenceIndex]}</p>
           <Link
             to="/editor"
             className="btn-primary"
@@ -21,6 +113,13 @@ const Home = () => {
           </Link>
         </div>
       </section>
+
+
+
+
+
+
+
 
       {/* About Section */}
       <section className="about py-16">

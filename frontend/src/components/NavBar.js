@@ -73,7 +73,7 @@ export default function NavBarUser() {
                                         onMouseLeave={closeDropdownC}
                                     >
                                         <button className="nav-link focus:outline-none">
-                                            <FontAwesomeIcon icon={faBook} /> Courese & Tutes
+                                            <FontAwesomeIcon icon={faBook} /> Course & Tutes
                                             <FontAwesomeIcon
                                                 icon={faChevronDown}
                                                 className={`ml-1 fas fa-chevron-down ${isDropdownOpenC ? 'rotate-180' : ''}`}

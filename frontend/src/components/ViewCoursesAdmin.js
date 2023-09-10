@@ -50,7 +50,7 @@ function ViewCoursesAdmin() {
       // After successful deletion, you can update the courses list or display a success message
       setCourses((prevCourses) => prevCourses.filter((course) => course._id !== courseId));
       // Redirect to ViewCoursesAdmin using navigate
-      navigate('/view-courses-admin');
+      navigate('/getCourseAdmin');
     } catch (error) {
       console.error('Error deleting course:', error);
     }
