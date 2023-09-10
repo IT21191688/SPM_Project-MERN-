@@ -14,7 +14,7 @@ function UpdateTutorial() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const tutorialResponse = await axios.post(`http://localhost:8080/tutorials/getT/${tutorialId}`);
+        const tutorialResponse = await axios.get(`http://localhost:8080/tutorials/getT/${tutorialId}`);
         const tutorial = tutorialResponse.data;
         setTutorialData({
           title: tutorial.title,

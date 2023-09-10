@@ -7,6 +7,7 @@ const createTutorial = async (req, res) => {
       title,
       description,
       courseid,
+      pdf: req.file.path, // Store the path to the uploaded PDF file
     });
 
     await newTutorial.save();
@@ -72,6 +73,7 @@ const deleteTutorialById = async (req, res) => {
     res.status(500).json({ error: 'Error deleting tutorial' });
   }
 };
+
 
 module.exports = {
   createTutorial,

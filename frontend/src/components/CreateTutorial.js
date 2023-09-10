@@ -3,34 +3,17 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-
 function CreateTutorial() {
   const { courseId, courseName } = useParams();
-  
+
   const [tutorialData, setTutorialData] = useState({
     title: '',
     description: '',
     courseid: courseId,
   });
 
-  const [courses, setCourses] = useState([]);
+  const [pdfFile, setPdfFile] = useState(null); // Store the selected PDF file
   const navigate = useNavigate();
-
-  
-
-
-  useEffect(() => {
-    async function fetchCourses() {
-      try {
-        const response = await axios.get('http://localhost:8080/courses/getCourses');
-        setCourses(response.data);
-      } catch (error) {
-        console.error('Error fetching courses:', error);
-      }
-    }
-
-    fetchCourses();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,11 +23,27 @@ function CreateTutorial() {
     });
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setPdfFile(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:8080/tutorials/create', tutorialData);
+      // Create a FormData object to send both the tutorialData and the PDF file
+      const formData = new FormData();
+      formData.append('title', tutorialData.title);
+      formData.append('description', tutorialData.description);
+      formData.append('courseid', tutorialData.courseid);
+      formData.append('pdf', pdfFile); // 'pdf' should match the field name on the server
+
+      await axios.post('http://localhost:8080/tutorials/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Important for file uploads
+        },
+      });
 
       // Redirect to the "View Tutorials" page on success
       navigate('/getCourseAdmin');
@@ -84,24 +83,18 @@ function CreateTutorial() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="courseid" className="block font-semibold text-primary mb-2">
-            Select a Course:
+          <label htmlFor="pdf" className="block font-semibold text-primary mb-2">
+            Upload PDF:
           </label>
-          <select
-            id="courseid"
-            name="courseid"
-            value={tutorialData.courseid}
-            onChange={handleChange}
+          <input
+            type="file"
+            id="pdf"
+            name="pdf"
+            onChange={handleFileChange}
+            accept=".pdf" // Specify that only PDF files are allowed
             className="border border-primary rounded-lg py-2 px-3 w-full"
             required
-          >
-            <option value="">Select a Course</option>
-            {courses.map((course) => (
-              <option key={course._id} value={course._id}>
-                {course.coursename}
-              </option>
-            ))}
-          </select>
+          />
         </div>
         <div>
           <button
