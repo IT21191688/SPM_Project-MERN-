@@ -69,14 +69,6 @@ function ViewTutorialsAdmin() {
     }
   };
 
-  const handleViewPDF = (pdfFilename) => {
-    // Construct the URL to fetch the PDF file
-    const pdfURL = `http://localhost:8080/tutorials/pdf/${pdfFilename}`;
-
-    // Open the PDF file in a new tab
-    window.open(pdfURL, '_blank');
-  };
-
 
   return (
     <div className="bg-AED2FF min-h-screen p-8">
@@ -106,12 +98,11 @@ function ViewTutorialsAdmin() {
                 </p>
                 <div className="mt-4">
 
-                <button
-                    onClick={() => handleViewPDF(tutorial.pdf)} // Pass the PDF file name to the function
+                  <a href={`http://localhost:8080/${tutorial.pdf}`}
                     className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
-                  >
-                    View PDF
-                  </button>
+                    download="test"
+                    target="_blank"
+                    rel="noreferrer" type="button" class="btn btn-success">View Tute</a>
 
                   <button
                     onClick={() => handleUpdateTutorial(tutorial._id)}

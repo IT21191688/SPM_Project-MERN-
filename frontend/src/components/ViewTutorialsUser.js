@@ -14,8 +14,8 @@ function ViewTutorialsUser() {
     // Fetch the list of tutorials from your server when the component mounts
     async function fetchTutorials() {
       try {
-        const response = await axios.post('http://localhost:8080/tutorials/allT'); // Adjust the endpoint based on your API route
-        
+        const response = await axios.get('http://localhost:8080/tutorials/allT'); // Adjust the endpoint based on your API route
+
         const filteredTutorials = response.data.filter(tutorials => tutorials.courseid === courseId);
 
         setTutorials(filteredTutorials);
@@ -41,7 +41,7 @@ function ViewTutorialsUser() {
   };
 
   return (
-    <div className="bg-blue-200 min-h-screen p-8">
+    <div className="bg-blue-100 min-h-screen p-8">
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold text-indigo-800 mb-6">Tutorials for {courseName}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -63,7 +63,22 @@ function ViewTutorialsUser() {
                     </span>
                   )}
                 </p>
+
+                <br />
+
+                <button
+                  onClick={() => {
+                    window.open(`http://localhost:8080/${tutorial.pdf}`, '_blank');
+                  }}
+                  className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+                  type="button"
+                >
+                  View Tute
+                </button>
+
+
               </div>
+
             </div>
           ))}
         </div>

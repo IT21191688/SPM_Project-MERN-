@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
 
 
@@ -40,12 +39,6 @@ router.put('/updateT/:id', updateTutorialById);
 
 // Delete a tutorial by ID
 router.delete('/deleteT/:id', deleteTutorialById);
-
-router.get('/pdf/:filename', (req, res) => {
-  const { filename } = req.params;
-  const filePath = path.join(__dirname, '../TuteFiles/', filename);
-  res.sendFile(filePath);
-});
 
 
 module.exports = router;

@@ -8,7 +8,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero" style={{ backgroundColor: "#27005D" }}>
         <div className="container mx-auto text-center text-white py-20">
-          <h1 className="text-4xl font-bold mb-4">Welcome to Code Mage</h1>
+          <h1 className="text-4xl font-bold mb-4">Welcome to .CODES</h1>
           <p className="text-lg mb-8">
             Your Gateway to the World of Coding
           </p>
