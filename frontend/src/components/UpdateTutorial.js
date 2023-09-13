@@ -86,9 +86,18 @@ function UpdateTutorial() {
           >
             Update Tutorial
           </button>
-          <Link to={`/tutorials/${tutorialId}`} className="ml-4 text-blue-500 hover:underline">
-            Cancel
-          </Link>
+          
+          <button
+  onClick={() => {
+    navigate(`/getTutorialAdmin/${courseId}/${courseName}`); // Redirect to ViewTutorialAdmin
+  }}
+  className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+  type="button"
+>
+  Back
+</button>
+
+
         </div>
       </form>
     </div>

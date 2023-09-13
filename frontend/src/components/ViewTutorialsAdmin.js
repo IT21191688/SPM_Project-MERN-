@@ -121,12 +121,32 @@ function ViewTutorialsAdmin() {
                   >
                     Delete
                   </button>
+
+                  
                 </div>
               </div>
+
+              
             </div>
+
+            
           ))}
+
+          
         </div>
+
+        
       </div>
+      <button
+                    onClick={() => {
+                    // Use the navigate function to redirect back to ViewCoursesAdmin
+                    navigate('/getCourseAdmin'); // Adjust the route path as needed
+                  }}
+                    className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+                    type="button"
+                  >
+                     Back
+      </button>
     </div>
   );
 }
