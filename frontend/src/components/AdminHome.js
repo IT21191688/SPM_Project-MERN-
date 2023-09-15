@@ -7,7 +7,7 @@ export default function AdminHome() {
 
             <div className="admin-options">
                 <div className="admin-option user-management">
-                    <a href="/adminRegister" className="admin-option-link">
+                    <a href="/getUsers" className="admin-option-link">
                         <h2>User Management</h2>
                         <p>Manage user accounts</p>
                     </a>
