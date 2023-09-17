@@ -131,6 +131,9 @@ export default function ViewAllUsers() {
                     <div class="w-full md:w-1/4">
                         <button type="button" class="btn btn-primary mt-2" onClick={() => { generatePdf() }}>Download All Details</button>
                     </div>
+                    <div class="w-full md:w-1/4">
+                        <button type="button" class="btn btn-primary mt-2" onClick={() => { navigate(`/adminRegister`) }}>Add New User</button>
+                    </div>
                 </div>
             </div>
             <div class="overflow-x-scroll mt-4">
@@ -156,7 +159,7 @@ export default function ViewAllUsers() {
                                 <td>{user.dob}</td>
                                 <td>{user.role}</td>
                                 <td class="space-x-2">
-                                    <a href={'/updateAppoinment/' + user._id}><button class="btn btn-sm text-white bg-blue-500">Update</button></a>
+                                    <a href={'/updateUsers/' + user._id}><button class="btn btn-sm text-white bg-blue-500">Update</button></a>
                                     <a onClick={() => deleteUser(user._id)}><button class="btn btn-sm text-white bg-red-500">Delete</button></a>
 
                                 </td>
