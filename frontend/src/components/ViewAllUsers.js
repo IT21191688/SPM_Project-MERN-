@@ -156,7 +156,7 @@ export default function ViewAllUsers() {
                                 <td>{user.dob}</td>
                                 <td>{user.role}</td>
                                 <td class="space-x-2">
-                                    <a href={'/updateAppoinment/' + user._id}><button class="btn btn-sm text-white bg-blue-500">Update</button></a>
+                                    <a href={'/updateUsers/' + user._id}><button class="btn btn-sm text-white bg-blue-500">Update</button></a>
                                     <a onClick={() => deleteUser(user._id)}><button class="btn btn-sm text-white bg-red-500">Delete</button></a>
 
                                 </td>

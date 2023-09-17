@@ -35,6 +35,7 @@ import UpdateTutorial from './components/UpdateTutorial';
 
 import Cookies from 'js-cookie';
 import ViewAllUsers from './components/ViewAllUsers';
+import UpdateUser from './components/UpdateUser';
 
 
 
@@ -77,6 +78,7 @@ function App() {
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/resetPassword' element={<ResetPassword />} />
                 <Route path='/getUsers' element={<ViewAllUsers />} />
+                <Route path='/updateUsers/:userId' element={<UpdateUser />} />
 
                 <Route path='/createCourse' element={<CreateCourse />} />
                 <Route path='/createTutorial/:courseId/:courseName' element={<CreateTutorial />} />
