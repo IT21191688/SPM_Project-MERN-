@@ -131,6 +131,9 @@ export default function ViewAllUsers() {
                     <div class="w-full md:w-1/4">
                         <button type="button" class="btn btn-primary mt-2" onClick={() => { generatePdf() }}>Download All Details</button>
                     </div>
+                    <div class="w-full md:w-1/4">
+                        <button type="button" class="btn btn-primary mt-2" onClick={() => { navigate(`/adminRegister`) }}>Add New User</button>
+                    </div>
                 </div>
             </div>
             <div class="overflow-x-scroll mt-4">
