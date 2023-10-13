@@ -137,8 +137,8 @@ export function createIfElseJs(condition) {
 
 //tree star pattern
 export function createTreeStarPattern(rows) {
-    
-    const functionText =`
+
+    const functionText = `
     let code = '';
     //tree 
     const testStr1 = "tree star pattern!!";\n
@@ -151,14 +151,14 @@ export function createTreeStarPattern(rows) {
         }
         console.log(code);
     `
-    
+
     return functionText;
 }
 
 //square star pattern
 export function createSquareStarPattern(rows) {
-    
-    const functionText =`
+
+    const functionText = `
     let code = '';
         //square
         const testStr2 = "square star pattern!!";\n
@@ -171,14 +171,14 @@ export function createSquareStarPattern(rows) {
         }
         console.log(code);
     `
-    
+
     return functionText;
 }
 
 //hollow square star pattern
 export function createHollowSquareStarPattern(rows) {
-    
-    const functionText =`
+
+    const functionText = `
     let code = '';
         //hollowsquare
         const testStr3 = "hollow square star pattern!!";\n
@@ -201,13 +201,13 @@ export function createHollowSquareStarPattern(rows) {
         }
         console.log(code);
     `
-    
+
     return functionText;
 }
 
 //summation
 export function summation(num1, num2) {
-    const functionText =`
+    const functionText = `
     const result = ${num1} + ${num2};
     console.log('Summation:', result);
      
@@ -225,10 +225,72 @@ export function findtextSize(text) {
 }
 
 export function createBreakStatement() {
-    const functionText =`
+    const functionText = `
     break;
     `;
     return functionText;
+}
+
+/////New Added
+
+
+export function createArrowFunction(functionName, parameters) {
+    const functionText = `
+        const ${functionName} = (${parameters}) => {
+            // Your arrow function implementation here
+        };
+    `;
+    return functionText;
+}
+
+/*
+
+export function createArray(variableName, elements) {
+    const elementsText = elements.map(element => JSON.stringify(element)).join(', ');
+    const functionText = `
+        const ${variableName} = [${elementsText}];
+    `;
+    return functionText;
+}
+
+*/
+export function createWhileLoop(condition) {
+    const loopText = `
+        while (${condition}) {
+            // Your while loop body here
+        }
+    `;
+    return loopText;
+}
+
+
+export function createSwitchStatement(variableName) {
+    const functionText = `
+        switch (${variableName}) {
+            case 'case1':
+                // Your case1 code here
+                break;
+            case 'case2':
+                // Your case2 code here
+                break;
+            default:
+                // Your default code here
+        }
+    `;
+    return functionText;
+}
+
+
+export function createTemplateLiteral(textValues, variableValues) {
+    let template = "const result = `";
+    for (let i = 0; i < textValues.length; i++) {
+        template += textValues[i];
+        if (i < variableValues.length) {
+            template += `\${${variableValues[i]}}`;
+        }
+    }
+    template += "`;\n";
+    return template;
 }
 
 

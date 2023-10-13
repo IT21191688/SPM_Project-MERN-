@@ -7,7 +7,7 @@ import '../css/code.css';
 import useClipboard from "react-use-clipboard";
 import {
     createJavaScriptFunction, createVaribleJs, createClassJs, commentJs, constantJs, objectJs, initializeJs, printJs, createForLoopJs, createIfElseJs, executeCode, createTreeStarPattern, createSquareStarPattern, createHollowSquareStarPattern, summation, findtextSize, createBreakStatement,
-    createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs
+    createJavaFunction, createClassJava, createCommentJava, createConstantJava, createForLoopJava, createIfElseJava, createObjectJava, createVariableJava, initializeJava, printJava, printVaribleJs, callFunctionJs, createArrowFunction, createArray, createWhileLoop, createSwitchStatement, createTemplateLiteral
 } from '../datamodules/DataCollections';
 
 
@@ -66,6 +66,11 @@ function Editor(props) {
             'summation': createsummation,
             'find text size': findAndDisplayTextSize,
             'create break statement': createBreakStatement,
+            'create arrow function': createArrowFunction,
+            // 'create array': createArray,
+            'create while loop': createWhileLoop,
+            'create switch statement': createSwitchStatement,
+            'create template literal': createTemplateLiteral,
         },
         'Java': {
             'create function': createJavaFunction,
