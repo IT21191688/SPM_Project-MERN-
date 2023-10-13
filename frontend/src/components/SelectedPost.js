@@ -6,12 +6,62 @@ import { useParams } from 'react-router-dom';
 import jwt from 'jwt-decode'
 import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { Document, Page, Text, View, StyleSheet, Image, PDFViewer } from '@react-pdf/renderer';
 
+const styles = StyleSheet.create({
+    page: {
+        flexDirection: 'column',
+        padding: 20,
+    },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    logo: {
+        width: 50, // Adjust the width of the logo as needed
+        height: 50, // Adjust the height of the logo as needed
+        marginRight: 10,
+    },
+    websiteName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    generatedDate: {
+        marginLeft: 'auto', // Align the generated date to the right
+        fontSize: 12,
+    },
+    postTitle: {
+        fontSize: 24,
+        marginBottom: 10,
+    },
+    postContent: {
+        fontSize: 14,
+        marginBottom: 20,
+    },
+    commentContainer: {
+        marginBottom: 10,
+    },
+    commentText: {
+        fontSize: 12,
+        marginBottom: 5, // Add margin to separate comments
+    },
+    commentAuthor: {
+        fontSize: 12,
+        color: 'blue', // Change the author's text color to blue
+    },
+    commentDivider: {
+        height: 1,
+        backgroundColor: 'gray', // Add a gray line to divide comments
+        marginBottom: 5, // Add margin below the divider
+    },
+});
 
 
 
 
 function SelectedPost(props) {
+
     const { postId } = useParams();
     console.log(postId);
     //const postId = props.match.params.postId; // Get the post ID from the route params
@@ -23,6 +73,59 @@ function SelectedPost(props) {
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
+    const [showPDFViewer, setShowPDFViewer] = useState(false);
+
+    const LogoImage = () => (
+        <Image
+            src='../images/logo.png' // Replace with the path to your logo image
+            style={styles.logo}
+        />
+    );
+
+    const Header = () => (
+        <View style={styles.header}>
+            <LogoImage />
+            <Text style={styles.websiteName}>DOT CODES</Text>
+            <Text style={styles.generatedDate}>Generated on: {new Date().toLocaleDateString()}</Text>
+        </View>
+    );
+
+
+    const PDFDocument = ({ post, comments }) => {
+        return (
+            <Document>
+                <Page size="A4" style={styles.page}>
+                    <Header />
+                    <Text style={styles.postTitle}>{post.title}</Text>
+                    <Text style={styles.postContent}>{post.content}</Text>
+                    <Text style={styles.commentContainer}>Comments:</Text>
+                    {comments.map((comment) => (
+                        <View key={comment._id} style={styles.commentContainer}>
+                            <Text style={styles.commentText}>Comment: {comment.text}</Text>
+                            <Text style={styles.commentAuthor}>Author: {comment.name}</Text>
+                            <Text style={styles.commentDivider}></Text>
+                        </View>
+                    ))}
+                </Page>
+            </Document>
+        );
+    };
+
+
+    const generatePDF = () => {
+        setShowPDFViewer(true);
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth', // You can also use 'auto' for instant scrolling
+        });
+    };
+
+    const sortedComments = comments.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return dateB - dateA;
+    });
+
 
 
     useEffect(() => {
@@ -96,21 +199,32 @@ function SelectedPost(props) {
     };
 
     const handleDeleteComment = (commentId) => {
-        // Send a DELETE request to delete the comment
-        axios.delete(`http://localhost:8080/api/comments/comments/${commentId}`)
-            .then(() => {
-                // Remove the deleted comment from the comments state
-                const updatedComments = comments.filter((comment) => comment._id !== commentId);
-                setComments(updatedComments);
-            })
-            .catch((error) => {
-                console.error('Error deleting comment:', error);
-            });
+        const commentToDelete = comments.find(comment => comment._id === commentId);
+        // Check if the logged-in user is the author of the comment
+        if (commentToDelete.name === name) {
+            // Proceed with deletion
+            axios.delete(`http://localhost:8080/api/comments/comments/${commentId}`)
+                .then(() => {
+                    const updatedComments = comments.filter((comment) => comment._id !== commentId);
+                    setComments(updatedComments);
+                })
+                .catch((error) => {
+                    console.error('Error deleting comment:', error);
+                });
+        } else {
+            alert('Only authors can delete comments')
+        }
     };
 
+
     const handleEditComment = (commentId, text) => {
-        // Set the comment ID and text in the editComment state
-        setEditComment({ id: commentId, text });
+        const commentToEdit = comments.find(comment => comment._id === commentId);
+        // Check if the logged-in user is the author of the comment
+        if (commentToEdit.name === name) {
+            setEditComment({ id: commentId, text });
+        } else {
+            alert('Only authors can edit comments')
+        }
     };
 
     const handleUpdateComment = (commentId) => {
@@ -135,41 +249,47 @@ function SelectedPost(props) {
             });
     };
 
+
     const handleDeletePost = () => {
-        // Send a GET request to fetch all comments related to the post
-        axios.get(`http://localhost:8080/api/comments/posts/${postId}/comments`)
-            .then((response) => {
-                const commentsToDelete = response.data;
-                // Delete each comment one by one
-                Promise.all(
-                    commentsToDelete.map((comment) =>
-                        axios.delete(`http://localhost:8080/api/comments/comments/${comment._id}`)
+        // Check if the logged-in user is the author of the post
+        if (post.name === name) {
+            axios.get(`http://localhost:8080/api/comments/posts/${postId}/comments`)
+                .then((response) => {
+                    const commentsToDelete = response.data;
+                    Promise.all(
+                        commentsToDelete.map((comment) =>
+                            axios.delete(`http://localhost:8080/api/comments/comments/${comment._id}`)
+                        )
                     )
-                )
-                    .then(() => {
-                        // After deleting all comments, delete the post itself
-                        axios.delete(`http://localhost:8080/api/posts/posts/${postId}`)
-                            .then(() => {
-                                navigate('/allpost');
-
-                            })
-                            .catch((error) => {
-                                console.error('Error deleting post:', error);
-                            });
-                    })
-                    .catch((error) => {
-                        console.error('Error deleting comments:', error);
-                    });
-            })
-            .catch((error) => {
-                console.error('Error fetching comments:', error);
-            });
-
+                        .then(() => {
+                            axios.delete(`http://localhost:8080/api/posts/posts/${postId}`)
+                                .then(() => {
+                                    navigate('/allpost');
+                                })
+                                .catch((error) => {
+                                    console.error('Error deleting post:', error);
+                                });
+                        })
+                        .catch((error) => {
+                            console.error('Error deleting comments:', error);
+                        });
+                })
+                .catch((error) => {
+                    console.error('Error fetching comments:', error);
+                });
+        } else {
+            alert('Only authors can delete posts')
+        }
     };
 
-    function handleUpdatePost() {
-        navigate(`/editpost/${postId}`);
-    }
+    const handleUpdatePost = () => {
+        // Check if the logged-in user is the author of the post
+        if (post.name === name) {
+            navigate(`/editpost/${postId}`);
+        } else {
+            alert('Only authors can edit posts')
+        }
+    };
 
     const addReplyToComment = (commentId, replyText) => {
         // Create a new reply object
@@ -206,7 +326,16 @@ function SelectedPost(props) {
     return (
         <div className="container mx-auto p-4">
             <div className="bg-white rounded-lg shadow-md p-6">
-                <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
+                    <button
+                        className="btn post-button text-themePurple hover:text-themeBlue"
+                        onClick={generatePDF}
+                    >
+                        Download PDF
+                    </button>
+                </div>
+
                 <pre style={{ whiteSpace: 'pre-wrap' }}>{post.content}</pre>
                 <br /><br />
                 <div className="blog-author">
@@ -232,6 +361,23 @@ function SelectedPost(props) {
                 <hr className="my-6" />
 
                 <h2 className="text-2xl font-semibold text-themeBlue">Reviews and Comments</h2>
+
+                <div className="comment-add-container mt-6">
+                    <h2 className="text-2xl font-semibold text-themeBlue">Add a Comment</h2>
+                    <textarea
+                        value={newComment}
+                        onChange={handleCommentChange}
+                        rows="4"
+                        className="form-control comment-add-textarea mt-2"
+                        placeholder="Write a comment..."
+                    />
+                    <button
+                        className="btn post-button mt-2 text-themePurple hover:text-themeBlue"
+                        onClick={handleSubmitComment}
+                    >
+                        Add Comment
+                    </button>
+                </div>
 
                 {/* Remove border from comment-container */}
                 <div className="comment-container mt-4">
@@ -293,22 +439,18 @@ function SelectedPost(props) {
                     ))}
                 </div>
 
-                <div className="comment-add-container mt-6">
-                    <h2 className="text-2xl font-semibold text-themeBlue">Add a Comment</h2>
-                    <textarea
-                        value={newComment}
-                        onChange={handleCommentChange}
-                        rows="4"
-                        className="form-control comment-add-textarea mt-2"
-                        placeholder="Write a comment..."
-                    />
-                    <button
-                        className="btn post-button mt-2 text-themePurple hover:text-themeBlue"
-                        onClick={handleSubmitComment}
-                    >
-                        Add Comment
-                    </button>
-                </div>
+
+
+
+
+                {showPDFViewer && (
+                    <div className="pdf-viewer">
+                        <PDFViewer width="100%" height="500">
+                            <PDFDocument post={post} comments={sortedComments} />
+                        </PDFViewer>
+                    </div>
+                )}
+
             </div>
         </div>
     );
