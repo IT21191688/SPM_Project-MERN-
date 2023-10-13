@@ -6,7 +6,7 @@ export default function Guidence() {
     //guidence complete
 
     const [currentPage, setCurrentPage] = useState(0);
-    const totalPages = 4; // Number of pages in the guide
+    const totalPages = 5; // Number of pages in the guide
 
     const nextPage = () => {
         if (currentPage < totalPages - 1) {
@@ -82,6 +82,17 @@ export default function Guidence() {
                     <li className="mb-1"><strong>"create function myFunction": </strong> Generates a function template.</li>
                     <li className="mb-1"><strong>"declare variable myVariable":</strong>  Generates a variable declaration.</li>
                     <li className="mb-1"><strong>"print variable varibleName":</strong> Displays the value of a variable.</li>
+                </ul>
+                <h4 className="text-lg mb-4">Example Voice Commands:</h4>
+                {/* ... Other content for Page 3 */}
+            </div>
+            <div className={`${currentPage === 4 ? 'block' : 'hidden'}`}>
+                <ul className="list-decimal list-inside mb-5">
+                    <li className="mb-1"><strong>"create arrow function"::</strong>  Generates arrow function structure.</li>
+                    <li className="mb-1"><strong>"create while loop":</strong>  Generates while loop statement.</li>
+                    <li className="mb-1"><strong>"create switch statement":</strong>  Generates  switch statement</li>
+                    <li className="mb-1"><strong>"create template literal":</strong>  Generates a template literal.</li>
+                    
                 </ul>
                 <h4 className="text-lg mb-4">Example Voice Commands:</h4>
                 {/* ... Other content for Page 3 */}

@@ -55,7 +55,7 @@ export default function NavBarUser() {
             <div className="container mx-auto">
                 <div className="flex items-center justify-between">
                     <a className="text-white text-3xl font-bold" href="#">
-                        .CODES
+                        EduCode
                     </a>
                     <div className="md:flex md:items-center space-x-4">
                         <ul className="flex space-x-4 text-white">
