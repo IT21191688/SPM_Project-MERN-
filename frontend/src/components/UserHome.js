@@ -101,7 +101,6 @@ const Home = () => {
             {typedText}
             <span className={showCursor ? "cursor" : ""}></span>
           </h1>
-          
           <br />
           <p className="text-lg mb-4">{sentences[currentSentenceIndex]}</p>
           <Link

@@ -1,94 +1,97 @@
 /* selectedPost.css */
 .container.selected-post {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h2.selected-post-title {
-    font-size: 28px;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    color: #27005D;
-  }
-  
-  h3.post-title {
-    font-size: 24px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: #27005D;
-  }
-  
-  p.post-content {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .btn.post-button {
-    background-color: #AED2FF;
-    color: #2564a8;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-right: 5px;
-  }
-  
-  .btn.post-button:hover {
-    color: #27005D;
-  }
-  
-  .comment-container {
-    margin-top: 30px;
-    
-  }
-  
-  .comment {
-    margin-bottom: 20px;
-    padding: 15px 5px 25px 25px;
-    border-radius: 30px;
-    background-color: #AED2FF;
-  }
-  
-  .comment-text {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .comment-button {
-    background-color: #9400FF;
-    color: #E4F1FF;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .comment-button:hover {
-    background-color: #AED2FF;
-  }
-  
-  .comment-edit-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .comment-add-container {
-    margin-top: 30px;
-  }
-  
-  .comment-add-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-  
-  
+/* Add these styles to your CSS file */
+.pdf-viewer {
+  margin-top: 20px;
+}
+
+
+h2.selected-post-title {
+  font-size: 28px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #27005D;
+}
+
+h3.post-title {
+  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #27005D;
+}
+
+p.post-content {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.btn.post-button {
+  background-color: #AED2FF;
+  color: #2564a8;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.btn.post-button:hover {
+  color: #27005D;
+}
+
+.comment-container {
+  margin-top: 30px;
+
+}
+
+.comment {
+  margin-bottom: 20px;
+  padding: 15px 5px 25px 25px;
+  border-radius: 30px;
+  background-color: #AED2FF;
+}
+
+.comment-text {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.comment-button {
+  background-color: #9400FF;
+  color: #E4F1FF;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.comment-button:hover {
+  background-color: #AED2FF;
+}
+
+.comment-edit-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.comment-add-container {
+  margin-top: 30px;
+}
+
+.comment-add-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}

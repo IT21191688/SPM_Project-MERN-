@@ -23,7 +23,7 @@ const path = require('path');
 require("dotenv").config();
 
 //initialize port number
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 //use dependancies
 app.use(cors());
