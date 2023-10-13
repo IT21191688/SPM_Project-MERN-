@@ -15,7 +15,7 @@ const Home = () => {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true); // To toggle the cursor
 
-  const fullText = "Welcome to .CODES"; // The complete text to be typed
+  const fullText = "Welcome to EduCode"; // The complete text to be typed
   const typingSpeed = 100; // Typing speed (milliseconds per character)
   const cursorBlinkSpeed = 50; // Cursor blink speed (milliseconds)
 
@@ -85,7 +85,7 @@ const Home = () => {
           backgroundColor: "#27005D",
           height: "500px", // Fixed height
           overflow: "hidden",
-          position: "relative", // Add this for absolute positioning
+          position: "inherit", // Add this for absolute positioning
         }}
       >
         <div
