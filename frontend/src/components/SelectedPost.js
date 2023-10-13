@@ -8,6 +8,7 @@ import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { Document, Page, Text, View, StyleSheet, Image, PDFViewer } from '@react-pdf/renderer';
 
+
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
@@ -70,6 +71,9 @@ function SelectedPost(props) {
     const [newComment, setNewComment] = useState('');
     const [editComment, setEditComment] = useState({ id: null, text: '' });
     const [commentReplies, setCommentReplies] = useState({});
+    const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
@@ -200,21 +204,31 @@ function SelectedPost(props) {
 
     const handleDeleteComment = (commentId) => {
         const commentToDelete = comments.find(comment => comment._id === commentId);
+
         // Check if the logged-in user is the author of the comment
         if (commentToDelete.name === name) {
-            // Proceed with deletion
-            axios.delete(`http://localhost:8080/api/comments/comments/${commentId}`)
-                .then(() => {
-                    const updatedComments = comments.filter((comment) => comment._id !== commentId);
-                    setComments(updatedComments);
-                })
-                .catch((error) => {
-                    console.error('Error deleting comment:', error);
-                });
+            // Show a confirmation dialog
+            const shouldDelete = window.confirm("Are you sure you want to delete this comment?");
+
+            if (shouldDelete) {
+                setItemToDelete('comment');
+                setShowDeleteConfirmation(true);
+
+                // Proceed with deletion
+                axios.delete(`http://localhost:8080/api/comments/comments/${commentId}`)
+                    .then(() => {
+                        const updatedComments = comments.filter((comment) => comment._id !== commentId);
+                        setComments(updatedComments);
+                    })
+                    .catch((error) => {
+                        console.error('Error deleting comment:', error);
+                    });
+            }
         } else {
-            alert('Only authors can delete comments')
+            alert('Only authors can delete comments');
         }
     };
+
 
 
     const handleEditComment = (commentId, text) => {
@@ -253,34 +267,43 @@ function SelectedPost(props) {
     const handleDeletePost = () => {
         // Check if the logged-in user is the author of the post
         if (post.name === name) {
-            axios.get(`http://localhost:8080/api/comments/posts/${postId}/comments`)
-                .then((response) => {
-                    const commentsToDelete = response.data;
-                    Promise.all(
-                        commentsToDelete.map((comment) =>
-                            axios.delete(`http://localhost:8080/api/comments/comments/${comment._id}`)
+            // Show a confirmation dialog
+            const shouldDelete = window.confirm("Are you sure you want to delete this post?");
+
+            if (shouldDelete) {
+                setItemToDelete('post');
+                setShowDeleteConfirmation(true);
+
+                axios.get(`http://localhost:8080/api/comments/posts/${postId}/comments`)
+                    .then((response) => {
+                        const commentsToDelete = response.data;
+                        Promise.all(
+                            commentsToDelete.map((comment) =>
+                                axios.delete(`http://localhost:8080/api/comments/comments/${comment._id}`)
+                            )
                         )
-                    )
-                        .then(() => {
-                            axios.delete(`http://localhost:8080/api/posts/posts/${postId}`)
-                                .then(() => {
-                                    navigate('/allpost');
-                                })
-                                .catch((error) => {
-                                    console.error('Error deleting post:', error);
-                                });
-                        })
-                        .catch((error) => {
-                            console.error('Error deleting comments:', error);
-                        });
-                })
-                .catch((error) => {
-                    console.error('Error fetching comments:', error);
-                });
+                            .then(() => {
+                                axios.delete(`http://localhost:8080/api/posts/posts/${postId}`)
+                                    .then(() => {
+                                        navigate('/allpost');
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error deleting post:', error);
+                                    });
+                            })
+                            .catch((error) => {
+                                console.error('Error deleting comments:', error);
+                            });
+                    })
+                    .catch((error) => {
+                        console.error('Error fetching comments:', error);
+                    });
+            }
         } else {
-            alert('Only authors can delete posts')
+            alert('Only authors can delete posts');
         }
     };
+
 
     const handleUpdatePost = () => {
         // Check if the logged-in user is the author of the post
@@ -324,8 +347,10 @@ function SelectedPost(props) {
 
 
     return (
+
         <div className="container mx-auto p-4">
             <div className="bg-white rounded-lg shadow-md p-6">
+
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <h1 className="text-3xl font-semibold text-themeBlue mb-4">{post.title}</h1>
                     <button
@@ -401,12 +426,7 @@ function SelectedPost(props) {
                                 >
                                     Edit Comment
                                 </button>
-                                <button
-                                    className="btn post-button text-themePurple hover:text-themeBlue"
-                                    onClick={() => handleReplyComment(comment._id)}
-                                >
-                                    Reply
-                                </button>
+
                             </div>
 
                             {comment._id === editComment.id && (
@@ -450,7 +470,6 @@ function SelectedPost(props) {
                         </PDFViewer>
                     </div>
                 )}
-
             </div>
         </div>
     );
