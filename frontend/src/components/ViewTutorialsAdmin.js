@@ -72,6 +72,16 @@ function ViewTutorialsAdmin() {
 
   return (
     <div className="bg-AED2FF min-h-screen p-8">
+      <button
+                    onClick={() => {
+                    // Use the navigate function to redirect back to ViewCoursesAdmin
+                    navigate('/getCourseAdmin'); // Adjust the route path as needed
+                  }}
+                    className="bg-themeBlue text-white px-2 py-1 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+                    type="button"
+                  >
+                     back
+      </button>
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold text-themeBlue mb-6">
           Tutorials for {courseName}
