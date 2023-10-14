@@ -86,6 +86,16 @@ function ViewTutorialsUser() {
                   View Tute
                 </button>
 
+                <button
+                  onClick={() => {
+                    window.open(`http://localhost:3000/editor`, '_blank');
+                  }}
+                  className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+                  type="button"
+                >
+                  Code Editor
+                </button>
+
 
               </div>
 
