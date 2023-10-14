@@ -11,18 +11,15 @@ function truncateDescription(description, maxLength) {
 
 function ViewCoursesAdmin() {
   const [courses, setCourses] = useState([]);
-  const [id, setId] = useState('');
-  const [name, setName] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const navigate = useNavigate(); // Use useNavigate hook to navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch the list of courses from your server when the component mounts
     async function fetchCourses() {
       try {
-        const response = await axios.get('http://localhost:8080/courses/getCourses'); // Adjust the endpoint based on your API route
+        const response = await axios.get('http://localhost:8080/courses/getCourses');
         setCourses(response.data);
-
       } catch (error) {
         console.error('Error fetching courses:', error);
       }
@@ -31,7 +28,6 @@ function ViewCoursesAdmin() {
     fetchCourses();
   }, []);
 
-  // Function to toggle the visibility of additional content for a specific course
   const toggleReadMore = (courseId) => {
     setCourses((prevCourses) =>
       prevCourses.map((course) =>
@@ -42,14 +38,14 @@ function ViewCoursesAdmin() {
     );
   };
 
-  // Function to handle deleting a course
+  const filteredCourses = courses.filter((course) =>
+    course.coursename.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const handleDeleteCourse = async (courseId) => {
     try {
-      // Send a DELETE request to remove the course based on courseId
-      await axios.delete(`http://localhost:8080/courses/delete/${courseId}`); // Adjust the endpoint based on your API route
-      // After successful deletion, you can update the courses list or display a success message
+      await axios.delete(`http://localhost:8080/courses/delete/${courseId}`);
       setCourses((prevCourses) => prevCourses.filter((course) => course._id !== courseId));
-      // Redirect to ViewCoursesAdmin using navigate
       navigate('/getCourseAdmin');
     } catch (error) {
       console.error('Error deleting course:', error);
@@ -67,27 +63,36 @@ function ViewCoursesAdmin() {
   return (
     <div className="bg-blue-200 min-h-screen p-8">
       <button
-                    onClick={() => {
-                    // Use the navigate function to redirect back to ViewCoursesAdmin
-                    navigate('/adminHome'); // Adjust the route path as needed
-                  }}
-                    className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
-                    type="button"
-                  >
-                     Back
-                  </button>
+        onClick={() => {
+          navigate('/adminHome');
+        }}
+        className="bg-themeBlue text-white px-4 py-2 rounded-md hover:bg-themePurple transition duration-300 inline-block mr-2"
+        type="button"
+      >
+        Back
+      </button>
+
+      <div className="flex justify-between items-center mb-4">
+      <div></div>
+      <input
+        type="text"
+        placeholder="Search courses"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="px-3 py-1 border rounded-full"
+      />
+</div>
       <div className="container mx-auto">
         <h2 className="text-3xl font-semibold text-blue-700 mb-6">Courses List</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {courses.map((course) => (
+          {filteredCourses.map((course) => (
             <div key={course._id}>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-purple-700 mb-2">{course.coursename}</h3>
                 <p className="text-gray-700">
                   {course.showMore
-                    ? course.description // Show the full description when showMore is true
-                    : truncateDescription(course.description, 150)}{' '}
-                  {/* Truncate the description to 150 characters */}
+                    ? course.description
+                    : truncateDescription(course.description, 150)}
                   {course.description.length > 150 && (
                     <span
                       className="text-blue-700 cursor-pointer"
@@ -98,7 +103,6 @@ function ViewCoursesAdmin() {
                   )}
                 </p>
                 <div className="mt-4">
-                  
                   <Link
                     to={`/courses/update/${course._id}`}
                     className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-purple-600 transition duration-300 inline-block mr-2"
@@ -108,7 +112,7 @@ function ViewCoursesAdmin() {
 
                   <button
                     onClick={() => handleDeleteCourse(course._id)}
-                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300 inline-block mr-2"
+                    className="bg-blue-700 text-white px-4 py-2 rounded-md hover-bg-red-600 transition duration-300 inline-block mr-2"
                   >
                     Delete
                   </button>
@@ -119,17 +123,13 @@ function ViewCoursesAdmin() {
                   >
                     Add Tute
                   </button>
-                  
+
                   <button
-                  
                     onClick={() => ViewTute(course._id, course.coursename)}
                     className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 inline-block mr-2"
                   >
                     View Tute
                   </button>
-
-                  
-
                 </div>
               </div>
             </div>
